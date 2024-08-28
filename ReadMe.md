@@ -181,7 +181,7 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
     > *Aplica-se quando possui cargas de trabalho de curto prazo, validar hipóteses, com pico de utilização imprevisível, testar e experimentar um ambiente*;
   >
     > *TAMBÉM TEM A POSSIBILIDADE DE CRIAR UMA INSTÂNCIA SOB DEMANDA RESERVADA PARA MELHORAR O CUSTO, DEFININDO HORAS TRABALHADAS E PERÍODO.*
-    
+  
     
   
   ![On Demand](./images/07.jpg)
@@ -313,8 +313,8 @@ Temos 3 opções em placement group
 | **Bastion Host ou Host Jump ou Jump Box** | Utilizado como ponte de conexão instâncias de subnet privada. Essa instância é criada com Ip Público, configuramos a instância de IP Privado VPC(Virtual private Cloud), para ter acesso SSH e ou RDP ao Bastion Host. Por último configura-se o Bastion Host para um NAT Gateware, com as regras de acesso e fazendo uso apenas do consumo da internet sem se tornar disponível na internet (para as instâncias de Ip Privado) | ![Bastion Host](./images/24.png)                             |
 | **Internet Gateway**                      | É bidirecional, permite o acesso da máquina a internet, mas também permite terceiros acessarem essa máquina a partir da internet. | ![Internet Gateway](./images/25.png)                         |
 | **Emparelhar**                            | É possível criar um emparelhamento de VPC entre suas próprias VPCs ou com uma VPC em outra conta AWS mesmo estando em outra AZ | ![Emparelhar VPCs](./images/27.png)                          |
-| **Private Link**                          | Fornece conectividade entre nuvens e serviços compatíveis AWS e sua rede on-premises sem expor o trafego na internet pública. | ![Private Link](./images/30.png)                             |
-| AWS Direct Connect                        | Conexão física entre rede local on premises e AWS, tráfego seguro e rápido ideal para migrar grande quantidade de dados. | ![Direct Connect](./images/32.png)                           |
+| **Private Link**                          | Fornece conectividade entre nuvens e serviços compatíveis AWS e sua rede on-premises sem expor o trafego na internet pública. | ![Private Link](./images/31.png)                             |
+| **AWS Direct Connect**                    | Conexão física entre rede local on premises e AWS, tráfego seguro e rápido ideal para migrar grande quantidade de dados. | ![Direct Connect](./images/32.png)                           |
 
 #### Características de uma VPC (Virtual Private Cloud)
 
