@@ -179,17 +179,19 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
   - **On Demand - Sob Demanda**: alto custo se utilizado a longo prazo - aplica-se a projetos de curto prazo, cobrança é realizada conforme o uso, não tem compromisso de uso, não se aplica pagamento adiantado, Pode-se aumentar ou diminuir a capacidade computacional a qualquer momento. 
 
     > *Aplica-se quando possui cargas de trabalho de curto prazo, validar hipóteses, com pico de utilização imprevisível, testar e experimentar um ambiente*;
-  
+  >
+    > *TAMBÉM TEM A POSSIBILIDADE DE CRIAR UMA INSTÂNCIA SOB DEMANDA RESERVADA PARA MELHORAR O CUSTO, DEFININDO HORAS TRABALHADAS E PERÍODO.*
+    
     
   
   ![On Demand](./images/07.jpg)
-  
+
   - **Instancias reservadas**: Até 75% de desconto em comparação ao modelo por demanda, aplicações que exigem capacidade reservada, comprometimento de uso da instância por um período de 1 ou 3 anos, possui pagamento adiantado;
 
     > *Aplica-se para ambiente de produção que foi testado e não será modificado, aplicações que precisar ser estado constante, excelente para banco de dados*;
 
     ![Instâncias Reservadas](./images/08.jpg)
-
+  
     
   
     **Spot Instances**: até 90% desconto comparado a instâncias sob demanda; São terminadas quando o preço spot, é maior do que o preço que você estabeleceu para pagar; Memorize como leilão de instâncias; terminate = preço spot da AWS>seu preço; não utilize para trabalhos críticos e banco de dados
@@ -310,6 +312,9 @@ Temos 3 opções em placement group
 | **Subnet privada**                        | Não tem saída para internet diretamente, mas pode ter esse acesso através de um Bastion Host. | ![Subnet Privada](./images/23.gif)                           |
 | **Bastion Host ou Host Jump ou Jump Box** | Utilizado como ponte de conexão instâncias de subnet privada. Essa instância é criada com Ip Público, configuramos a instância de IP Privado VPC(Virtual private Cloud), para ter acesso SSH e ou RDP ao Bastion Host. Por último configura-se o Bastion Host para um NAT Gateware, com as regras de acesso e fazendo uso apenas do consumo da internet sem se tornar disponível na internet (para as instâncias de Ip Privado) | ![Bastion Host](./images/24.png)                             |
 | **Internet Gateway**                      | É bidirecional, permite o acesso da máquina a internet, mas também permite terceiros acessarem essa máquina a partir da internet. | ![Internet Gateway](./images/25.png)                         |
+| **Emparelhar**                            | É possível criar um emparelhamento de VPC entre suas próprias VPCs ou com uma VPC em outra conta AWS mesmo estando em outra AZ | ![Emparelhar VPCs](./images/27.png)                          |
+| **Private Link**                          | Fornece conectividade entre nuvens e serviços compatíveis AWS e sua rede on-premises sem expor o trafego na internet pública. | ![Private Link](./images/30.png)                             |
+| AWS Direct Connect                        | Conexão física entre rede local on premises e AWS, tráfego seguro e rápido ideal para migrar grande quantidade de dados. | ![Direct Connect](./images/32.png)                           |
 
 #### Características de uma VPC (Virtual Private Cloud)
 
@@ -414,6 +419,10 @@ Permite mover objetos do bucket de forma configurável e automática para custom
 
 Cuidado com acesso público para buckets criados, aplicar regras de grupo, usuário, roles, escritas por json para listar, permitir e negar acessos.
 
+> Para a exclusão de arquivos no Bucket é possível adicionar uma etapa adicional de **MFA antes do objeto ser excluído**. Isso minimiza questões de **exclusão acidental**. Exclusão de MFA no bucket.
+>
+> 
+
 ### Bucket Policy S3
 
 Função por bucket, indicado para torna-lo mais seguro e definir regras de acesso
@@ -436,6 +445,10 @@ Sistema de controle com flexibilidade para administradores, permite que usuário
 ### Segurança em S3 Modo Conformidade
 
 É como um cofre inviolável, nem o usuário ADM consegue alterar algo até o período de contenção expirar. Ideal para atender requisitos regulatórios rigorosos onde os dados não podem ser modificados ou alterados antes de um tempo definido.
+
+![Segurança em S3](C:\Users\tijac\Documents\aws\estudo\images\28.png)
+
+ ![Governança e Conformidade S3](./images/29.png)
 
 ## Banco de dados
 
@@ -507,6 +520,7 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 - SSD
 - Pode escalar Horizontalmente automaticamente. 
 - Atende muito bem Aplicações que tem necessidade de atender a mais de uma região, pois possui recursos como tabelas globais, que replica dados automaticamente entre regiões da AWS.
+- *É possível usar esse serviço em conjunto com solução **Amazon SQS(Fila)**, **Amazon Auto Scaling** para tratar questões de tempo de processamento*
 
 > Aplicação - Ecommerce, Games, Mobile ou IoT. Sistemas com consultas mais simplificadas e sem muitos dados binários.
 >
