@@ -581,9 +581,16 @@ Estrutura de um conteúdo disponibilizado com CloudFront:
 Como podemos ver no fluxo acima o conteúdo não é armazenado em um CloudFront e sim conforme a demanda é feita apenas um cache do conteúdo o que torna o mesmo mais perto do usuário final e permite que o mesmo não sinta uma grande latência ao acessa-lo. Mas sempre que o conteúdo for atualizado, acessado pela primeira vez, será necessário resgata-lo do seu local de origem, seja esse loca um bucket S3 ou uma Instância EC2. Também poderíamos estar tratando aqui conteúdo vindo de um Gateway, Elastic Load Balancing, AWS Media Services, AWS Elemental ou de um servidor on-premises(local dentro de uma empresa privada).
 
 * Responsável por diminuir latência.
+
 * Replica nas Edges Locations o conteúdo em cache
+
 * CloudFront Origins OAI(Origins Access Indentity) é o recurso que o CloudFront utiliza para acessar a origem do seu conteúdo de forma segura. Isso permite que apenas o CloudFront consiga acessar esse conteúdo em sua origem o usuário sempre vai precisar acessa-lo pelo CloudFront.
+
 * Nome da URL vai conter o cloudfront.net
+
+  > **Permite aplicar restrição geográfica para bloquear acesso a países que por algum motivo não possa acessar um conteúdo distribuído com Cloudfront.**
+
+![CloudFront](./images/37.png)
 
 ### EBS Multi-atach (Elastic Block Store)
 
@@ -639,6 +646,8 @@ Casos de uso:
 - Hearst Corporation usa para uma solução centralizada de análise de sequência de cliques usando o Kinesis
 
 ![Amazon Kinesis Data Streams](./images/35.png)
+
+![Amazon Kinesis Data Firehose](./images/36.png)
 
 ## AWS Elastic Beanstalk
 
