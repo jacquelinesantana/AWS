@@ -446,7 +446,7 @@ Sistema de controle com flexibilidade para administradores, permite que usuário
 
 É como um cofre inviolável, nem o usuário ADM consegue alterar algo até o período de contenção expirar. Ideal para atender requisitos regulatórios rigorosos onde os dados não podem ser modificados ou alterados antes de um tempo definido.
 
-![Segurança em S3](C:\Users\tijac\Documents\aws\estudo\images\28.png)
+![Segurança em S3](./images/28.png)
 
  ![Governança e Conformidade S3](./images/29.png)
 
@@ -624,6 +624,21 @@ Serviço para desacoplamento de aplicações redução de interdependência. Pri
 - se integra facilmente com outros serviços da AWS
 
 ![SQS serviço de fila de mensagens AWS](./images/34.png)
+
+### Amazon Kinesis Data Streams
+
+Serviço serveless que coleta e processa dados em tempo real. Ideal para aplicações que exigem alta escalabilidade e baixa latência e processamento contínuo de dados.
+
+Os dados conforme a demanda são divididos em shards, que são como malotes de dados que processar e armazenar os dados e isso permite que o serviço escale horizontamente para lidar com grandes volumes de dados em tempo real.
+
+Casos de uso:
+
+- Disney + usa o serviço para alimentar uma plataforma de vídeo acessada por milhões de clientes
+- Comcast fornece tranmissão cde dados de alta performace com o Kinesis Data Streams
+- Thomson Reuters usa Kenesis para construir uma pipeline de dados de transmissão para proporcionar insights mais rápidos e melhor experiência do usuário
+- Hearst Corporation usa para uma solução centralizada de análise de sequência de cliques usando o Kinesis
+
+![Amazon Kinesis Data Streams](./images/35.png)
 
 ## AWS Elastic Beanstalk
 
