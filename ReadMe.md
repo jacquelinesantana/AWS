@@ -613,11 +613,17 @@ Como podemos ver no fluxo acima o conteúdo não é armazenado em um CloudFront 
 
 > Aplicação: **Hospedagem de websites**, **banco de dados**, **backup e recuperação de desastres**, execução de aplicações que requerem **baixa latência e alta IOPS**(input output operations per second)
 
+### Amazon SQS
 
+Serviço para desacoplamento de aplicações redução de interdependência. Principais funções:
 
-- 
+- criar filas de mensagens 
+- desacoplamento de componentes
+- é altamente escalável permite que processe grande volume de mensagens
+- garante a entrega das mensagens
+- se integra facilmente com outros serviços da AWS
 
-
+![SQS serviço de fila de mensagens AWS](./images/34.png)
 
 ## AWS Elastic Beanstalk
 
