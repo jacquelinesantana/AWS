@@ -164,6 +164,20 @@ O Iam é o serviço que permite gerencias usuários e grupos de usuários da sua
 9. Dar nome de fácil identificação da função
 10. Clicar em criar
 
+## Controle de usuários
+
+### AWS Organizations
+
+
+
+### Service Control Policy
+
+Para aplicar restrições em várias contas-membro, você deve usar Service Control Policy(SCP) na Amazon Organization, assim pode-se criar uma regra de negação que se aplique a qualquer coisa, exemplo restringir o uso de algum tipo de instância EC2.
+
+### AWS Resource Access Manager (RAM)
+
+Ajuda a compartilhar seus recursos com segurança entre diferentes contas AWS, dentro de sua organização ou unidades Organizacionais(UOs) e com perfis e usuário do IAM para tipos de recursos compatíveis.
+
 ## Computação
 
 Serviços computacionais em nuvem, diz respeito a locação de máquinas/ servidores, onde podemos ter controle total de sistema operacional, versão, atualizações de Sistemas e outras aplicações ou ainda podemos apenas locar o espaço que vai ser hospedagem para aplicações, transferindo preocupações com o hardware e até mesmo podemos transferir as preocupações com atualizações de sistemas para a AWS, focando assim, na aplicação final. Abaixo vamos ver alguns serviços considerados serviços de computação:
@@ -244,6 +258,19 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
 
 ![Auto Scaling](./images/12.jpg)
 
+#### Application Load Balancer (ALP)
+
+O Application Load Balancer é um recurso da AWS que trabalha em conjunto com o Auto Scaling, isso porque não adianta apenas subir mais máquinas temos que ter um gestor que direcione as cargas e distribua de forma a ser autossustentável as requisições entre os servidores disponíveis. Então esse gestor é o ALP.
+
+Uma vez que aplicamos esse serviço em nossa estrutura teremos:
+
+- Distribuição de carga - ele vai distribuir as requisições conforme configurações.
+- Alta disponibilidade - caso um servidor falhe ele vai automaticamente passar as requisições para outro host.
+- Roteamento inteligente - ele pode redirecionar os clientes conforme diversos critérios a serem avaliados como IP do cliente, cabeçalho da requisição, requisição...
+- Segurança: O ALB oferece recursos de segurança com terminação TLS/SSL que criptografa o tráfego entre seus clientes e servidores.
+
+![Application Load Balancer](./images/38.png)
+
 #### Segurança no EC2
 
 1. criar uma política de segurança(role/função) de acesso
@@ -315,6 +342,7 @@ Temos 3 opções em placement group
 | **Emparelhar**                            | É possível criar um emparelhamento de VPC entre suas próprias VPCs ou com uma VPC em outra conta AWS mesmo estando em outra AZ | ![Emparelhar VPCs](./images/27.png)                          |
 | **Private Link**                          | Fornece conectividade entre nuvens e serviços compatíveis AWS e sua rede on-premises sem expor o trafego na internet pública. | ![Private Link](./images/31.png)                             |
 | **AWS Direct Connect**                    | Conexão física entre rede local on premises e AWS, tráfego seguro e rápido ideal para migrar grande quantidade de dados. | ![Direct Connect](./images/32.png)                           |
+| **Site to site**                          | Conexão virtual via túnel entre sua rede e a AWS, estende a rede on premises para nuvem. Pode ter maior latência que o PrivateLink. | ![39](C:\Users\tijac\Documents\aws\estudo\images\39.png)     |
 
 #### Características de uma VPC (Virtual Private Cloud)
 
@@ -342,20 +370,21 @@ Benefícios:
 
 ![VPC e VPN](./images/26.png)
 
-## Armazenamentos:
+## Armazenamentos S3
 
-- **Amazon S3** (Amazon Simple Storage Service) - é um serviço de armazenamento de objetos da AWS que permite armazenar e recuperar grandes quantidades de dados de maneira simples e escalável. Oferece local seguro e confiável para armazenar qualquer tipo de arquivo e dados de aplicativos... nessa estrutura os arquivos são chamados objetos e eles estarão organizados em recipientes chamados bucket. | `Aplicação`:  pode ser utilizado como: **Armazenamento de arquivos**, **Acesso e compartilhamento**, **Escalabilidade** pois podemos lidar com qualquer quantidade de dados, **Backup e recuperação**. ** produto principal (**SaaS**)
+**Amazon S3** (Amazon Simple Storage Service) - é um serviço de armazenamento de objetos da AWS que permite armazenar e recuperar grandes quantidades de dados de maneira simples e escalável. Oferece local seguro e confiável para armazenar qualquer tipo de arquivo e dados de aplicativos... nessa estrutura os arquivos são chamados objetos e eles estarão organizados em recipientes chamados bucket. | `Aplicação`:  pode ser utilizado como: **Armazenamento de arquivos**, **Acesso e compartilhamento**, **Escalabilidade** pois podemos lidar com qualquer quantidade de dados, **Backup e recuperação**. ** produto principal (**SaaS**)
 
-  Para o serviço S3 temos alguns tipos de classe de armazenamento que podem ser escolhidos conforme a necessidade do cliente, melhor performance ou melhor custo.
+Para o serviço S3 temos alguns tipos de classe de armazenamento que podem ser escolhidos conforme a necessidade do cliente, melhor performance ou melhor custo.
 
-  Para esse serviço a **AWS é responsável pela segurança da nuvem, proteção da infraestrutura e fornecer serviços que podem ser utilizados com segurança**, esta segurança e regularmente testada por auditores de terceiros.
+Para esse serviço a **AWS é responsável pela segurança da nuvem, proteção da infraestrutura e fornecer serviços que podem ser utilizados com segurança**, esta segurança e regularmente testada por auditores de terceiros.
 
-  Para esse serviço você é responsável pela segurança na nuvem, confidencialidade de seus dados, requisitos da sua organização, leis e regulamentos aplicáveis. Você deve:
-  
-  1. Gerenciar seus dados, propriedade de objetos e criptografia
-  
-  2. Classificar seus ativos
-  3. Gerenciar o acesso a seus dados com as funções do IAM
+Para esse serviço você é responsável pela segurança na nuvem, confidencialidade de seus dados, requisitos da sua organização, leis e regulamentos aplicáveis. Você deve:
+
+1. Gerenciar seus dados, propriedade de objetos e criptografia
+
+2. Classificar seus ativos
+3. Gerenciar o acesso a seus dados com as funções do IAM
+
 4. Habilitar controles de detecção como o AWS CloudTrail ou Amazon GuardDuty
 
 Dicionário do S3:
@@ -450,13 +479,64 @@ Sistema de controle com flexibilidade para administradores, permite que usuário
 
  ![Governança e Conformidade S3](./images/29.png)
 
+## Armazenamento EBS Multi-atach (Elastic Block Store)
+
+É um serviço de armazenamento em bloco da AWS. Ele oferece volumes de armazenamento persistente para instâncias do Amazon EC2, banco de dados(RDS). Armazenamento bruto em nível de bloco.
+
+* até 16 instancias aceita apenas o Io1, instancias do tipo Nitro
+* Dados continuam mesmo quando a EC2 é interrompida ou desligada.
+* Você pode mudar a capacidade ou tipo de volume conforme necessário.
+* Sempre da mesma AZ da EC2
+* São replicados automaticamente dentro da zona de disponibilidade que estão.
+* Move através do Snapshot
+* Tipos de EBS:
+  * SSD + rápido e + caro
+  * HDD + lento e + barato (descontinuado)
+* Uso Geral, volumes equilibrados adequados para uma ampla gama de workloads:
+  * Tipo GP2 - SSD
+  * Tipo GP3 - SSD
+* Provisionado Iops, requerem alta performance como banco de dados
+  * io1
+  * io2
+* Magnetic, opções de baixo custo para armazenamento de dados menos acessados.
+  * sc1
+  * st1
+* Otimizado para taxa de transferência 
+* Cold HDD - baixo custo - pouco acesso
+* Snapshot - São cópias de um Snapshot que pode ser para outra região - utilizado tbm para backup
+
+> Aplicação: **Hospedagem de websites**, **banco de dados**, **backup e recuperação de desastres**, execução de aplicações que requerem **baixa latência e alta IOPS**(input output operations per second)
+
+## Coleta de processamento de dados - Amazon Kinesis Data Streams
+
+Serviço serveless que coleta e processa dados em tempo real. Ideal para aplicações que exigem alta escalabilidade e baixa latência e processamento contínuo de dados.
+
+Os dados conforme a demanda são divididos em shards, que são como malotes de dados que processar e armazenar os dados e isso permite que o serviço escale horizontamente para lidar com grandes volumes de dados em tempo real.
+
+Casos de uso:
+
+- Disney + usa o serviço para alimentar uma plataforma de vídeo acessada por milhões de clientes
+- Comcast fornece tranmissão cde dados de alta performace com o Kinesis Data Streams
+- Thomson Reuters usa Kenesis para construir uma pipeline de dados de transmissão para proporcionar insights mais rápidos e melhor experiência do usuário
+- Hearst Corporation usa para uma solução centralizada de análise de sequência de cliques usando o Kinesis
+
+![Amazon Kinesis Data Streams](./images/35.png)
+
+![Amazon Kinesis Data Firehose](./images/36.png)
+
 ## Banco de dados
 
 Banco de dados podem ser relacionais ou não relacionais. E cada um desses modelos tem como objetivo atender um determinado tipo de demanda.
 
 ### Amazon RDS
 
-É um serviço que facilita a criação, operação e estabilidade de bancos de dados relacionais na nuvem. Permite que você escolha e configure facilmente um banco de dados relacional popular como MYSQL, PostgreSQL, Oracle, Sql Server entre outros sem necessidade de instalar ou gerenciar o software de banco de dados.  (**SaaS**) * * principal produto 
+É um serviço que facilita a criação, operação e estabilidade de bancos de dados relacionais na nuvem. Permite que você escolha e configure facilmente um banco de dados relacional popular como MYSQL, PostgreSQL, Oracle, Sql Server entre outros sem necessidade de instalar ou gerenciar o software de banco de dados.  (**SaaS**) * * principal produto.
+
+> O RDS cria um <u>certificado SSL</u> e instala o certificado na instância de banco de dados quando provisiona a instância. 
+>
+> Você pode fazer download de um certificado raiz da AWS que funcione para todas as regiões ou pode fazer download de certificados intermediários específicos da região e usar para conectar à instância de banco de dados RDS para garantir maior segurança.
+
+![RDS](./images/40.png)
 
 ### Tipos de banco de dados:
 
@@ -484,10 +564,13 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 
 > Não se aplica:  se o sistema tem baixo tráfego, sistemas que fazem muitas operações de escrita e poucas leituras exemplo: login. Sistemas com dados voláteis ou de curta duração. Sistemas onde a consistência dos dados é crítica, como sistemas bancários. 
 
+![Elasticache](./images/41.png)
+
 ### Aurora
 
 É um banco de dados que promete alta disponibilidade e rapidez dentro do modelo Relacional. Permite aumentar ou diminuir a capacidade da instância conforme necessário, com pouco ou nenhum tempo de inatividade.
 
+* Multi -AZ
 * AWS é proprietária
 * Suporta transações complexas.
 * Compatível com o o Mysql e PostgreSQL
@@ -509,6 +592,8 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 ### DynamoDB
 
 **Amazon DynamoDB** - banco de dados **não relacional**, **serveless** ou seja em nuvem e se paga pelo que é consumido e não pelas instancias adquiridas. É escalável (ilimitado em armazenamento e taxa de transferência ), confiável tem **backup continuo** dos últimos 35 dias. É rápido e tem latência em microssegundos.
+
+* Multi -AZ
 
 - Banco de dados não relacional, No Sql
 - Mili segundos para acesso
@@ -532,7 +617,9 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 
 É um serviço de banco de dados relacional, voltado para lidar com grandes volumes de dados e realizar consultas analíticas em grandes conjuntos de dados para relatórios,análises e insights.
 
+* Multi -AZ
 * Serviço de WareHouse(armazenagem)
+
 * Ideal para executar consultas com Joins e processamento de grandes volumes de dados em tempo hábil.
 * Pode-se escalar facilmente adicionar ou remover nós de cluster
 * Compatível com o modelo de negocio BI. Fácil de integrar com aplicações de BI.
@@ -543,7 +630,6 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 * Single Node (uma instância)
 * Compute Mode(!28 instâncias)
 * Leitura em várias Databases MMP (Massive Paralel Processing)
-* Não é Multi AZ
 * AWS pode gerenciar automaticamente as rotinas de backups, replicas e outros.
 
 > Aplicação: Sistemas de BI (business intelligence), sistemas com consultas complexas, onde o volume de dados pode atingir Pentabytes.
@@ -592,33 +678,7 @@ Como podemos ver no fluxo acima o conteúdo não é armazenado em um CloudFront 
 
 ![CloudFront](./images/37.png)
 
-### EBS Multi-atach (Elastic Block Store)
-
-É um serviço de armazenamento em bloco da AWS. Ele oferece volumes de armazenamento persistente para instâncias do Amazon EC2, banco de dados(RDS). Armazenamento bruto em nível de bloco.
-
-* até 16 instancias aceita apenas o Io1, instancias do tipo Nitro
-* Dados continuam mesmo quando a EC2 é interrompida ou desligada.
-* Você pode mudar a capacidade ou tipo de volume conforme necessário.
-* Sempre da mesma AZ da EC2
-* São replicados automaticamente dentro da zona de disponibilidade que estão.
-* Move através do Snapshot
-* Tipos de EBS:
-  * SSD + rápido e + caro
-  * HDD + lento e + barato (descontinuado)
-* Uso Geral, volumes equilibrados adequados para uma ampla gama de workloads:
-  * Tipo GP2 - SSD
-  * Tipo GP3 - SSD
-* Provisionado Iops, requerem alta performance como banco de dados
-  * io1
-  * io2
-* Magnetic, opções de baixo custo para armazenamento de dados menos acessados.
-  * sc1
-  * st1
-* Otimizado para taxa de transferência 
-* Cold HDD - baixo custo - pouco acesso
-* Snapshot - São cópias de um Snapshot que pode ser para outra região - utilizado tbm para backup
-
-> Aplicação: **Hospedagem de websites**, **banco de dados**, **backup e recuperação de desastres**, execução de aplicações que requerem **baixa latência e alta IOPS**(input output operations per second)
+> 
 
 ### Amazon SQS
 
@@ -634,20 +694,7 @@ Serviço para desacoplamento de aplicações redução de interdependência. Pri
 
 ### Amazon Kinesis Data Streams
 
-Serviço serveless que coleta e processa dados em tempo real. Ideal para aplicações que exigem alta escalabilidade e baixa latência e processamento contínuo de dados.
 
-Os dados conforme a demanda são divididos em shards, que são como malotes de dados que processar e armazenar os dados e isso permite que o serviço escale horizontamente para lidar com grandes volumes de dados em tempo real.
-
-Casos de uso:
-
-- Disney + usa o serviço para alimentar uma plataforma de vídeo acessada por milhões de clientes
-- Comcast fornece tranmissão cde dados de alta performace com o Kinesis Data Streams
-- Thomson Reuters usa Kenesis para construir uma pipeline de dados de transmissão para proporcionar insights mais rápidos e melhor experiência do usuário
-- Hearst Corporation usa para uma solução centralizada de análise de sequência de cliques usando o Kinesis
-
-![Amazon Kinesis Data Streams](./images/35.png)
-
-![Amazon Kinesis Data Firehose](./images/36.png)
 
 ## AWS Elastic Beanstalk
 
