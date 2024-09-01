@@ -35,6 +35,10 @@ Ao contratar um serviço AWs a ideia será sempre ver qual a região mais próxi
 - **Edge Locations** ou **PoPs (pontos de presença) ou zonas locais - são utilizados como cache de dados** é uma infraestrutura de servidores, localizado próximo de uma zona de disponibilidade, armazena dados mais solicitados no cache para melhorar latência de uma requisição de consulta. Estão em pontos estratégicos sem cobertura pela AWS. Exemplo:  **Amazon Cloud Front**, que armazena o cache do seu site estático, por exemplo. Outro serviço **AWS Lightsail** ou **AWS ElastiCache** (banco de dados em memória).
 
   Site: https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.LocalZones
+  
+- **Wavelength** - permite aos desenvolvedores criar aplicativos com latências inferiores a 10 milissegundos para aplicativos mobile. Isso porque a AWS cria uma estrutura de servidores próprios dentro das companhias de internet móvel, assim a conexão acontece do celular para os equipamentos da AWS dentro da provedora de internet e desses equipamentos para os servidores onde o serviço da AWS esta hospedado.
+
+- **AWS Outposts** - é a AWS levando sua estrutura computacional e serviços para dentro de empresas, locais de terceiros que necessitam de conexão mais rápida com os serviços.
 
 ## Seis vantagens do uso da AWS
 
