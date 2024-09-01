@@ -162,6 +162,51 @@ O Iam é o serviço que permite gerencias usuários e grupos de usuários da sua
 >
 > <u>Através desses você consegue criar e gerenciar Politicas IBP ou RBP</u>
 
+### Politicas de acesso
+
+Politicas de acesso pode ser definidas para usuários, Grupo de usuário e para role(função)
+
+Temos a **politica in line** que pode ser aplicada a um usuário ou uma role.
+
+Temos também o **AWS Managed** e o **Custumer Manager** que pode ser aplicada ao usuário, grupo ou role.
+
+Essas Três modalidades não afetam o resultado final e podem ser localizadas no serviço IAM.
+
+- **Identity Policy** - São politicas que são aplicadas a usuário(s) e ou grupo(s)
+- **Resource Policy** - São politicas que são aplicadas/associadas a recursos - Exemplo  EC2, S3...
+
+Politicas são escritas em Json:
+
+```
+"Statement":
+[
+    {
+        "Effect":"Allow",
+        "Action":[
+            "s3:GetBucketLocation",
+            "s3:ListAllBuckets"
+        ],
+        "Resource":"Arn:aws:s3:::*"
+    },
+    {
+        "Effect":"Deny",
+        "Action":"s3:*",
+        "Resource":[
+        "arn:aws:s3:::YOUR-BUCKET",
+        "arn:aws:s3:::YOUR-BUCKET/*"
+        ]
+    }
+]
+```
+
+O Json de uma policy pode ser do tipo **Deny** (negação) ou **Allow**(liberar) conforme a necessidade de liberar ou bloquear o acesso ao serviço/recurso, essa informação estará em **Effect**.
+
+Em **Action** teremos o recurso que vamos aplicar a politica, no exemplo acima estamos no primeiro objeto do Json passando que o S3 terá o Get da localização do bucket local permitido, por exemplo.
+
+Em **Resource** teremos para quem será aplicado essa politica, no caso do segundo objeto do Json estamos aplicando ao seu bucket e a todos os recursos dentro do seu bucket.
+
+Poderíamos ter um **Condition** também para dar condição da politica, por exemplo definindo para quais S3 vamos seguir essa politica.
+
 ### Security Token Service(STS)
 
 Permite que você solicite tokens de sessão do endpoint global que funciona em todas as regiões da AWS. É um serviço global e todas as solicitações de STS vão para um único endpoint em https//sts.amazonaws.com.
