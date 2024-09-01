@@ -143,17 +143,34 @@ O Iam é o serviço que permite gerencias usuários e grupos de usuários da sua
 - Troque de credenciais regularmente
 - Remova as credenciais desnecessárias
 - Monitorar as atividades em sua conta
-- integração com diversos serviços
+- Integração com diversos serviços
+- Para a conta root, definir aos seus usuários uma política de senha forte.
 
 ![IAM](./images/04.JPG)
 
 **Primeiro autentica - depois autoriza**
 
-> **Usuários** - pessoa ou serviço, com credenciais permanentes. Use o Least Privilege
+> **Usuários** - pessoa ou serviço, com credenciais permanentes. Use o Least Privilege (privilégio mínimo)
+>
+> **Federated Users** - login por facebook e outros
 >
 > **Grupos** - coletivo de usuários (grupos não podem conter outros grupos)
 >
-> **Funções** - não são permissões é um método de autenticação temporária.
+> **Funções/roles** - não são permissões é um método de autenticação temporária.
+>
+> **Politica** - Através das politicas é possível permitir que serviços acessem outros serviços ou recursos dentro da AWS.
+>
+> <u>Através desses você consegue criar e gerenciar Politicas IBP ou RBP</u>
+
+### Security Token Service(STS)
+
+Permite que você solicite tokens de sessão do endpoint global que funciona em todas as regiões da AWS. É um serviço global e todas as solicitações de STS vão para um único endpoint em https//sts.amazonaws.com.
+
+**Dicas:**
+
+> - **Reduza a latência** - fazer as chamadas do STS para o endpoint que esteja mais próximo
+> - **Construir em redundância** - usar isolamento de falhas para proteger sua carga de trabalho
+> - **Aumentar a validade do token da sessão** - Token gerado regionalmente para um serviço é diferente de token global para a mesma aplicação/serviço.
 
 ### Como criar uma função/role de permissão de acesso a uma S3 em uma instância EC2
 
@@ -181,6 +198,13 @@ Para aplicar restrições em várias contas-membro, você deve usar Service Cont
 ### AWS Resource Access Manager (RAM)
 
 Ajuda a compartilhar seus recursos com segurança entre diferentes contas AWS, dentro de sua organização ou unidades Organizacionais(UOs) e com perfis e usuário do IAM para tipos de recursos compatíveis.
+
+## Interfaces de acesso AWS 
+
+1. **AWS Management Console** - é o sistema da AWS acessado por navegador ou por celular com o aplicativo AWS Console Mobile APP.
+2. **Command Line Interface (CLI)** - Prompt de linha de comandos, suporte para Linux, Power Shell..
+3. **API** - As aplicações acessando os serviços da AWS, pode ser uma aplicação já alocada dentro da AWS que se comunica com outros serviços AWS. Exemplo: backend se comunicando com banco de dados.
+4. **Software Development Kit (SDK)** - Este permite que se utilize um conjunto de linguagens de programação que pode ser PHP, Javascript, Java entre outras para se comunicar com a sua aplicação.
 
 ## Computação
 
@@ -839,11 +863,7 @@ Possui 3 planos:
 - **Assinatura individual**: todo plano grátis + Acesso ilimitado a mais de 1225 laboratórios; Cursos aprimorados de preparação para exames; AWS Cloud Quest - funções intermediárias e avançadas; AWS Industry Quest; Exames simulados oficinas da AWS Certification; Jornada AWS Jam;
 - **Assinatura de equipe**: Tudo do plano individual e mais Capacidade de atribuir treinamento individual e em equipe; painel administrativo; relatórios abrangentes; eventos do AWS Jam; Logon único (opcional)
 
-## Interfaces de acesso AWS 
-
-1. **AWS Management Console** - é o sistema da AWS acessado por navegador ou por celular com o aplicativo AWS Console Mobile APP.
-2. **Command Line Interface (CLI)** - Prompt de linha de comandos, suporte para Linux, Power Shell..
-3. **Software Development Kit (SDK)** - Este permite que se utilize um conjunto de linguagens de programação que pode ser PHP, Javascript, Java entre outras para se comunicar com a sua aplicação.
+3. 
 
 ## Well-Architected
 
