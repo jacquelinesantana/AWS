@@ -468,6 +468,7 @@ Dicionário do S3:
 | objetos | tudo que podemos armazenar em um bucket é chamado objeto (fotos, arquivos, dados, backups, etc) |
 | keys    | referencia ao objeto dentro do bucket, essa key vai sempre indicar o **diretório + objeto** |
 | regiões | o serviço S3 é um **serviço regional** com visão global, ele é criado em uma região, pode ter redundância ou não dentro dessa região, mas ele é visto de dentro do ambiente AWS globalmente, por esse motivo seu bucket deve ter nome único. |
+| ARN     | Nome do recurso da Amazon - todo objeto que é alocado em um bucket recebe seu ARN<br />exe: arn:aws:s3:::nomeConta/nomeArquivo.png |
 
 A AWS Garante para esse serviço:
 
