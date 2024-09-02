@@ -462,18 +462,22 @@ Para esse serviço você é responsável pela segurança na nuvem, confidenciali
 
 Dicionário do S3:
 
-| Serviço | Descrição                                                    |
-| ------- | ------------------------------------------------------------ |
-| buckets | é o local onde estará armazenado seus objetos/arquivos/dados, tal qual um drive do seu computador ele tem um endereço, pode ser de acesso publico ou restrito |
-| objetos | tudo que podemos armazenar em um bucket é chamado objeto (fotos, arquivos, dados, backups, etc) |
-| keys    | referencia ao objeto dentro do bucket, essa key vai sempre indicar o **diretório + objeto** |
-| regiões | o serviço S3 é um **serviço regional** com visão global, ele é criado em uma região, pode ter redundância ou não dentro dessa região, mas ele é visto de dentro do ambiente AWS globalmente, por esse motivo seu bucket deve ter nome único. |
-| ARN     | Nome do recurso da Amazon - todo objeto que é alocado em um bucket recebe seu ARN<br />exe: arn:aws:s3:::nomeConta/nomeArquivo.png |
+| Serviço     | Descrição                                                    |
+| ----------- | ------------------------------------------------------------ |
+| **buckets** | é o local onde estará armazenado seus objetos/arquivos/dados, tal qual um drive do seu computador ele tem um endereço, pode ser de acesso publico ou restrito |
+| **Objetos** | tudo que podemos armazenar em um bucket é chamado objeto (fotos, arquivos, dados, backups, etc) |
+| **Keys**    | referencia ao objeto dentro do bucket, essa key vai sempre indicar o **diretório + objeto** |
+| **Regiões** | o serviço S3 é um **serviço regional** com visão global, ele é criado em uma região, pode ter redundância ou não dentro dessa região, mas ele é visto de dentro do ambiente AWS globalmente, por esse motivo seu bucket deve ter nome único. |
+| **ARN**     | Nome do recurso da Amazon - todo objeto que é alocado em um bucket recebe seu ARN<br />exe: arn:aws:s3:::nomeConta/nomeArquivo.png |
 
 A AWS Garante para esse serviço:
 
 - Durabilidade: 99.999999999% (arquivos não corrompidos e nem danificados)
 - Disponibilidade: 99.95 a 99.99% (disponível em 99.99% do tempo ou disponível em 99.95 % do tempo)
+
+#### Transfer Acceleration
+
+O S3 Transfer Acceleration acelera as transferencias via internet entre o cliente e o bucket. O preço é baseado no local da borda da AWS usado para acelerar sua transferencia. A definição de preço do Transfer Acceleration é somado à definição de preço da transferência de dados.
 
  Classes de armazenamento S3:
 
