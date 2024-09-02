@@ -526,15 +526,15 @@ Permite mover objetos do bucket de forma configurável e automática para custom
 ### Replicação de dados S3
 
 > [!WARNING]
-> É possível replicar um bucket para outra região para melhor atender outra filial da empresa por exemplo
+> É possível replicar um bucket para outra região para melhor atender outra filial da empresa por exemplo, para isso é necessário deixar habilitado o versionamento da bucket que se deseja replicar.
 
 ### Politica IAM S3
 
 Cuidado com acesso público para buckets criados, aplicar regras de grupo, usuário, roles, escritas por json para listar, permitir e negar acessos.
 
-> Para a exclusão de arquivos no Bucket é possível adicionar uma etapa adicional de **MFA antes do objeto ser excluído**. Isso minimiza questões de **exclusão acidental**. Exclusão de MFA no bucket.
->
-> 
+> [!WARNING]
+>Para a exclusão de arquivos no Bucket é possível adicionar uma etapa adicional de **MFA antes do objeto ser excluído**. Isso minimiza questões de **exclusão acidental**. Exclusão de MFA no bucket.
+
 
 ### Bucket Policy S3
 
