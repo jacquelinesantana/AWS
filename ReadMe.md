@@ -469,11 +469,14 @@ Dicionário do S3:
 | **Keys**    | referencia ao objeto dentro do bucket, essa key vai sempre indicar o **diretório + objeto** |
 | **Regiões** | o serviço S3 é um **serviço regional** com visão global, ele é criado em uma região, pode ter redundância ou não dentro dessa região, mas ele é visto de dentro do ambiente AWS globalmente, por esse motivo seu bucket deve ter nome único. |
 | **ARN**     | Nome do recurso da Amazon - todo objeto que é alocado em um bucket recebe seu ARN<br />exe: arn:aws:s3:::nomeConta/nomeArquivo.png |
+| **RRS**     | Reduced Redundancy Storage é uma opção de armazenamento do Amazon S3 que permite aos clientes armazenar reproduzíveis e que não sejam de fundamental importância com níveis de redundância mais baixo do que o armazenamento padrão do Amazon S3. Ela armazena objetos em vários dispositivos em diversas instalações, oferecendo durabilidade 400 vezes maior que a de uma unidade comum, mas não replica objetos tantas vezes quanto o armazenamento padrão. Projetado para fornecer 99,99% de durabilidade e 99,99 de disponibilidade. |
 
 A AWS Garante para esse serviço:
 
 - Durabilidade: 99.999999999% (arquivos não corrompidos e nem danificados)
 - Disponibilidade: 99.95 a 99.99% (disponível em 99.99% do tempo ou disponível em 99.95 % do tempo)
+- Tamanho máximo para upload de arquivo = 5Tb
+- Pode-se dividir o arquivo em partes para o upload e remontar tudo dentro do bucket.
 
 #### Transfer Acceleration
 
@@ -493,6 +496,9 @@ O S3 Transfer Acceleration acelera as transferencias via internet entre o client
 | Amazon S3 Glacier Deep Archive     | a mais acessível em questão de valores, armazenamento para preservação digital de longo prazo, acesso de 1 a 2 vezes ao ano, tempo de armazenamento de 7 a 10 ou mais anos. | Serviços financeiros; Saúde; Setor público;                  | $0,00099 por Gb                                              | sim                           | até 12 horas para recuperar os objetos |
 
   > valores podem sofrer alterações**
+
+> [!TIP]
+> Uso de Signed Url's com data de expiração pode ser uma solução para evitar que arquivos de imagens de seu bucket em sites de terceiros.
 
 ### Versioning - Versionamento no S3
 
@@ -576,6 +582,41 @@ Recurso para conseguir visualizar dentro da bucket as ações, quem excluiu, alt
 5. Ativar
 6. Selecione a Bucket destino
 7. Salvar
+
+### Habilitar bloqueio/permissão fora do IAM (policy)
+
+Bucket policy é aplicado diretamente ao bucket e não ao usuário. 
+
+- É escrita em Json e aplicada direto no bucket
+- Pode ser utilizada para permitir/bloquear um usuário de acessa-la
+
+```
+{
+	"Version":"2012-10-17",
+	"Statement":[{
+		"Sid":"Allow",
+		"Effect":"Allow",
+		"Principal":{
+		"AWS":[
+			"arn:aws:iam::6161616161:root",
+			"arn:aws:iam::6161616161:user/jason"
+		]
+		},
+		"Action":"s3:GetObject",
+		"Resource":"arn:aws:s3:::foobucket/*"
+	}]
+}
+```
+
+#### ACL - List Access Control
+
+Este seria o ultimo recurso a ser utilizado para filtrar o trafego (acesso) a um bucket. Lembre-se que esta é uma opção mais limitada e o melhor senário seria utilizar as Politicas aplicada ao bucket.
+
+O proprietário da Bucket consegue por default Listar, Gravar, leitura e gravação.
+
+#### AWS Storage Gateway
+
+É um aplicativo virtual que esta na sua empresa (on premises) que pode ser utilizado para armazenar o cache do S3 localmente.
 
 ## Armazenamento EBS Multi-atach (Elastic Block Store)
 
