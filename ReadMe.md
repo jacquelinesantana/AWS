@@ -475,6 +475,7 @@ A AWS Garante para esse serviço:
 
 - Durabilidade: 99.999999999% (arquivos não corrompidos e nem danificados)
 - Disponibilidade: 99.95 a 99.99% (disponível em 99.99% do tempo ou disponível em 99.95 % do tempo)
+- Tamanho mínimo de um arquivo = 1Byte
 - Tamanho máximo para upload de arquivo = 5Tb
 - Pode-se dividir o arquivo em partes para o upload e remontar tudo dentro do bucket.
 
