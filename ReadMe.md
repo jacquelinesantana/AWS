@@ -525,7 +525,8 @@ Permite mover objetos do bucket de forma configurável e automática para custom
 
 ### Replicação de dados S3
 
-É possível replicar um bucket para outra região para melhor atender outra filial da empresa por exemplo
+> [!WARNING]
+> É possível replicar um bucket para outra região para melhor atender outra filial da empresa por exemplo
 
 ### Politica IAM S3
 
@@ -563,6 +564,18 @@ Sistema de controle com flexibilidade para administradores, permite que usuário
 ![Segurança em S3](./images/28.png)
 
  ![Governança e Conformidade S3](./images/29.png)
+
+### Server Access Logging no S3
+
+Recurso para conseguir visualizar dentro da bucket as ações, quem excluiu, alterou ... Seguindo-se os passos abaixo você ativa esse registro de logs e a partir dessa ação tudo que se for feito vai ficar um log no S3
+
+1. Criar uma bucket de destino para os logs
+2. Na bucket que se quer criar o log, em Propriedades 
+3. Opção Registro em log de acesso ao servidor
+4. Editar
+5. Ativar
+6. Selecione a Bucket destino
+7. Salvar
 
 ## Armazenamento EBS Multi-atach (Elastic Block Store)
 
