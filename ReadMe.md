@@ -469,7 +469,12 @@ Dicionário do S3:
 | keys    | referencia ao objeto dentro do bucket, essa key vai sempre indicar o **diretório + objeto** |
 | regiões | o serviço S3 é um **serviço regional** com visão global, ele é criado em uma região, pode ter redundância ou não dentro dessa região, mas ele é visto de dentro do ambiente AWS globalmente, por esse motivo seu bucket deve ter nome único. |
 
-  Classes de armazenamento S3:
+A AWS Garante para esse serviço:
+
+- Durabilidade: 99.999999999% (arquivos não corrompidos e nem danificados)
+- Disponibilidade: 99.95 a 99.99% (disponível em 99.99% do tempo ou disponível em 99.95 % do tempo)
+
+ Classes de armazenamento S3:
 
 | Classe                             | Descrição                                                    | Aplicação                                                    | Valor estimado(dolar)                                        | Redundância                   | Tipo de acesso                         |
 | ---------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------- | -------------------------------------- |
@@ -531,7 +536,9 @@ Função por bucket, indicado para torna-lo mais seguro e definir regras de aces
 
 ### Bucket ACL
 
-Aplicado por bucket uma lista de acesso, é o ultimo recurso a ser indicado para a segurança do bucket.
+ACL Lista de controle de acesso é um sub-recurso do S3 que permite o gerenciamento do acesso aos buckets e objetos. Esta lista define quais são os grupos ou contas da AWS tem acesso ao bucket e tipo de acesso. É definido no momento em que se cria o bucket. <u>Na documentação a AWS recomenda não habilitar a ACL, o proprietário do bucket possui todos os objetos do bucket e gerencia o acesso a eles exclusivamente usando políticas de gerenciamento</u>.
+
+As ACLs são escritas em XML  e concedem todos os direitos ao dono do bucket.
 
 ### Criptografia S3
 
