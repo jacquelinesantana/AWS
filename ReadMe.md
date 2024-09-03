@@ -206,6 +206,7 @@ Poderíamos ter um **Condition** também para dar condição da politica, por ex
 Permite que você solicite tokens de sessão do endpoint global que funciona em todas as regiões da AWS. É um serviço global e todas as solicitações de STS vão para um único endpoint em https//sts.amazonaws.com.
 
 > [!IMPORTANT]  
+>
 > - **Reduza a latência** - fazer as chamadas do STS para o endpoint que esteja mais próximo
 > - **Construir em redundância** - usar isolamento de falhas para proteger sua carga de trabalho
 > - **Aumentar a validade do token da sessão** - Token gerado regionalmente para um serviço é diferente de token global para a mesma aplicação/serviço.
@@ -412,7 +413,14 @@ Temos 3 opções em placement group
 | **Emparelhar**                            | É possível criar um emparelhamento de VPC entre suas próprias VPCs ou com uma VPC em outra conta AWS mesmo estando em outra AZ | ![Emparelhar VPCs](./images/27.png)                          |
 | **Private Link**                          | Fornece conectividade entre nuvens e serviços compatíveis AWS e sua rede on-premises sem expor o trafego na internet pública. | ![Private Link](./images/31.png)                             |
 | **AWS Direct Connect**                    | Conexão física entre rede local on premises e AWS, tráfego seguro e rápido ideal para migrar grande quantidade de dados. | ![Direct Connect](./images/32.png)                           |
-| **Site to site**                          | Conexão virtual via túnel entre sua rede e a AWS, estende a rede on premises para nuvem. Pode ter maior latência que o PrivateLink. | ![39](C:\Users\tijac\Documents\aws\estudo\images\39.png)     |
+| **Site to site**                          | Conexão virtual via túnel entre sua rede e a AWS, estende a rede on premises para nuvem. Pode ter maior latência que o PrivateLink. | ![39](./images/39.png)                                       |
+
+####Cobranças no EC2
+
+> [!IMPORTANT]  
+>1. Instância em Status Stopping - não gera cobrança da instância mas cobra pelo armazenamento dos seus dados e sistema operacional (armazenamento)
+>2. Endereço de IP privado mantem-se o mesmo quando a máquina esta em Status Stopping porem o ip público será perdido a menos que seja um IP Elastico
+>3. Instância em Status Hivernatting - você paga pelo volume armazenado e também pela memória Ram que ainda esta ativa
 
 #### Características de uma VPC (Virtual Private Cloud)
 
