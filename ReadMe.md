@@ -313,7 +313,7 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
 - Isso fornece um nível mais alto de isolamento em comparação com as instâncias EC2 padrão, que podem compartilhar hardware com outras contas AWS.
 - As instâncias dedicadas EC2 são úteis quando você deseja garantir que suas VMs estejam em um ambiente mais isolado, mas não precisa de um host dedicado completo.
 - O custo de uma instância dedicada EC2 é geralmente menor do que o de um host dedicado, pois você paga apenas pelas instâncias que utiliza.
-    
+  
   ![Instância Dedicada](./images/11.jpg)
 
 > [!TIP]
@@ -370,7 +370,12 @@ Uma vez que aplicamos esse serviço em nossa estrutura teremos:
 
 #### EC2 Saving Plans
 
-Aqui vale lembrar que é um serviço que pode ser associado ao EC2, mas que também atende outros serviços. É um contrato de 1 a 3 anos que se aplica ao serviço de EC2, precisa especificar região, familia, Qualquer tamanho e Sistema Operacional. 
+Aqui vale lembrar que é um serviço que pode ser associado ao EC2, mas que também atende outros serviços. É um contrato de 1 a 3 anos que se aplica ao serviço de EC2, precisa especificar região, família, Qualquer tamanho e Sistema Operacional. 
+
+Esse tipo de contrato pode ser aplicado a um serviço Fargate, Lambda, EC2 - **Compute Saving Plans**. onde conseguimos aplicar a qualquer região e alterar a região, Família, tamanho e Sistema Operacional.
+
+Já o contrato **EC2 Saving Plans** é exclusivo para EC2 apenas e pode não tem flexibilidade na região, tipo de família, tamanho ou Sistema Operacional.
+
 
 #### Estado da instância
 
