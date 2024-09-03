@@ -619,6 +619,16 @@ O proprietário da Bucket consegue por default Listar, Gravar, leitura e gravaç
 
 É um aplicativo virtual que esta na sua empresa (on premises) que pode ser utilizado para armazenar o cache do S3 localmente.
 
+#### Criar um role para conceder o acesso a uma S3 para um EC2
+
+1. Dentro do IAM ir para o recurso Role/Função
+2. Botão criar função
+3. Opção Serviço da AWS, caso de uso EC2
+4. Em politicas de permissão pesquisar por S3 e selecionar a opção: "AmazonS3FullAccess" ou "AmazonS3ReadOnly" dependendo da necessidade
+5. De um nome para sua função e também uma descrição para ajudar a entender quem faz uso e qual o uso
+6. Será gerado um Json com a role criada e suas permissões
+7. Agora basta concluir.
+
 ## Armazenamento EBS Multi-atach (Elastic Block Store)
 
 É um serviço de armazenamento em bloco da AWS. Ele oferece volumes de armazenamento persistente para instâncias do Amazon EC2, banco de dados(RDS). Armazenamento bruto em nível de bloco.
@@ -645,6 +655,7 @@ O proprietário da Bucket consegue por default Listar, Gravar, leitura e gravaç
 * Cold HDD - baixo custo - pouco acesso
 * Snapshot - São cópias de um Snapshot que pode ser para outra região - utilizado tbm para backup
 
+> [!TIP]
 > Aplicação: **Hospedagem de websites**, **banco de dados**, **backup e recuperação de desastres**, execução de aplicações que requerem **baixa latência e alta IOPS**(input output operations per second)
 
 ## Coleta de processamento de dados - Amazon Kinesis Data Streams
@@ -672,8 +683,8 @@ Banco de dados podem ser relacionais ou não relacionais. E cada um desses model
 
 É um serviço que facilita a criação, operação e estabilidade de bancos de dados relacionais na nuvem. Permite que você escolha e configure facilmente um banco de dados relacional popular como MYSQL, PostgreSQL, Oracle, Sql Server entre outros sem necessidade de instalar ou gerenciar o software de banco de dados.  (**SaaS**) * * principal produto.
 
+> [!TIP]
 > O RDS cria um <u>certificado SSL</u> e instala o certificado na instância de banco de dados quando provisiona a instância. 
->
 > Você pode fazer download de um certificado raiz da AWS que funcione para todas as regiões ou pode fazer download de certificados intermediários específicos da região e usar para conectar à instância de banco de dados RDS para garantir maior segurança.
 
 ![RDS](./images/40.png)
@@ -700,8 +711,8 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 * Memory Cache (utiliza objetos para armazenar)
 * Redis(armazena Key Value e aceita multi AZ)
 
-> Aplicação: E-commerce para atender demandas altas como promoções ou feriados. Sistemas em tempo, como jogos online e sistemas de trading financeiro. Sessões de usuário e recomendações para usuários. Consultas complexas ou demoradas ao banco de dados.
-
+> [!TIP]
+>  Aplicação: E-commerce para atender demandas altas como promoções ou feriados. Sistemas em tempo, como jogos online e sistemas de trading financeiro. Sessões de usuário e recomendações para usuários. Consultas complexas ou demoradas ao banco de dados.
 > Não se aplica:  se o sistema tem baixo tráfego, sistemas que fazem muitas operações de escrita e poucas leituras exemplo: login. Sistemas com dados voláteis ou de curta duração. Sistemas onde a consistência dos dados é crítica, como sistemas bancários. 
 
 ![Elasticache](./images/41.png)
@@ -725,8 +736,8 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
   * backup continuo -> distribuído em 3 zonas -> pode ser feito em um bucket
   * alta disponibilidade de 99,99%
 
+> [!TIP]
 > Aplicação: Sistemas financeiros, ERP, CRM.
->
 > Não se aplica: aplicações que podem ter esquema de dados não fixo, sistemas com alto nível de escrita no banco de dados pode ter um gargalo nesse operação. 
 
 ### DynamoDB
@@ -747,10 +758,9 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 - Atende muito bem Aplicações que tem necessidade de atender a mais de uma região, pois possui recursos como tabelas globais, que replica dados automaticamente entre regiões da AWS.
 - *É possível usar esse serviço em conjunto com solução **Amazon SQS(Fila)**, **Amazon Auto Scaling** para tratar questões de tempo de processamento*
 
+> [!TIP]
 > Aplicação - Ecommerce, Games, Mobile ou IoT. Sistemas com consultas mais simplificadas e sem muitos dados binários.
->
 > Não se aplica:  quando requer consultas complexas.
-
 > OBS: o **Consistent Read** é i tempo delay entre a gravação do dado e a leitura do mesmo. Aqui temos o Strongly Consistent Reads que leva esse tempo de resposta para dados recém gravados para menos de 1 segundo.
 
 ### Redshift
@@ -772,8 +782,8 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 * Leitura em várias Databases MMP (Massive Paralel Processing)
 * AWS pode gerenciar automaticamente as rotinas de backups, replicas e outros.
 
+> [!TIP]
 > Aplicação: Sistemas de BI (business intelligence), sistemas com consultas complexas, onde o volume de dados pode atingir Pentabytes.
->
 > Não se aplica: aplicações que não atingem essa complexidade de dados, ou empresas de pequeno porte pode ser um custo não justificado. Exige uma boa estrutura de dados e planejamento(modelagem de dados). Sistemas de dados em tempo real.
 
 ## Serviços AWS
@@ -814,11 +824,11 @@ Como podemos ver no fluxo acima o conteúdo não é armazenado em um CloudFront 
 
 * Nome da URL vai conter o cloudfront.net
 
-  > **Permite aplicar restrição geográfica para bloquear acesso a países que por algum motivo não possa acessar um conteúdo distribuído com Cloudfront.**
+ > [!TIP]
+	> **Permite aplicar restrição geográfica para bloquear acesso a países que por algum motivo não possa acessar um conteúdo distribuído com Cloudfront.**
 
 ![CloudFront](./images/37.png)
 
-> 
 
 ### Amazon SQS
 
