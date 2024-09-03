@@ -353,6 +353,7 @@ Uma vez que aplicamos esse serviço em nossa estrutura teremos:
 4. escolher a role/função que precisa aplicar
 5. botão atualizar função do IAM
 
+> [!TIP]
 > Evite uso de chaves de acesso, usar Role
 
 #### Criar a função/role de acesso ao  EC2
