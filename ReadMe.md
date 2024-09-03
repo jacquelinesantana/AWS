@@ -415,7 +415,7 @@ Temos 3 opções em placement group
 | **AWS Direct Connect**                    | Conexão física entre rede local on premises e AWS, tráfego seguro e rápido ideal para migrar grande quantidade de dados. | ![Direct Connect](./images/32.png)                           |
 | **Site to site**                          | Conexão virtual via túnel entre sua rede e a AWS, estende a rede on premises para nuvem. Pode ter maior latência que o PrivateLink. | ![39](./images/39.png)                                       |
 
-####Cobranças no EC2
+#### Cobranças no EC2
 
 > [!IMPORTANT]  
 >1. Instância em Status Stopping - não gera cobrança da instância mas cobra pelo armazenamento dos seus dados e sistema operacional (armazenamento)
