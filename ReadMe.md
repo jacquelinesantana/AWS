@@ -147,19 +147,13 @@ O Iam é o serviço que permite gerencias usuários e grupos de usuários da sua
 - Para a conta root, definir aos seus usuários uma política de senha forte.
 
 ![IAM](./images/04.JPG)
-
-**Primeiro autentica - depois autoriza**
-
+> [!IMPORTANT]  
+>Primeiro autentica - depois autoriza**
 > **Usuários** - pessoa ou serviço, com credenciais permanentes. Use o Least Privilege (privilégio mínimo)
->
 > **Federated Users** - login por facebook e outros
->
 > **Grupos** - coletivo de usuários (grupos não podem conter outros grupos)
->
 > **Funções/roles** - não são permissões é um método de autenticação temporária.
->
 > **Politica** - Através das politicas é possível permitir que serviços acessem outros serviços ou recursos dentro da AWS.
->
 > <u>Através desses você consegue criar e gerenciar Politicas IBP ou RBP</u>
 
 ### Politicas de acesso
@@ -211,8 +205,7 @@ Poderíamos ter um **Condition** também para dar condição da politica, por ex
 
 Permite que você solicite tokens de sessão do endpoint global que funciona em todas as regiões da AWS. É um serviço global e todas as solicitações de STS vão para um único endpoint em https//sts.amazonaws.com.
 
-**Dicas:**
-
+> [!IMPORTANT]  
 > - **Reduza a latência** - fazer as chamadas do STS para o endpoint que esteja mais próximo
 > - **Construir em redundância** - usar isolamento de falhas para proteger sua carga de trabalho
 > - **Aumentar a validade do token da sessão** - Token gerado regionalmente para um serviço é diferente de token global para a mesma aplicação/serviço.
