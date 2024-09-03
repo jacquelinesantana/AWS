@@ -287,13 +287,11 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
   
   - **Spot Instances**: até 90% desconto comparado a instâncias sob demanda; São terminadas quando o preço spot, é maior do que o preço que você estabeleceu para pagar; Memorize como leilão de instâncias; terminate = preço spot da AWS>seu preço; não utilize para trabalhos críticos e banco de dados
   
-    > [!TIP]
-	> *Aplica-se quando você tem urgência de grande capacidade computacional, workloads que podem parar e serem iniciados novamente, trabalhos em lote, análise de dados, processamento de imagens.*
-    > Utilizada para testes e em alguns casos ela é utilizado como Auto Scale
+ > [!TIP]
+  > *Aplica-se quando você tem urgência de grande capacidade computacional, workloads que podem parar e serem iniciados novamente, trabalhos em lote, análise de dados, processamento de imagens.*
+  > Utilizada para testes e em alguns casos ela é utilizado como Auto Scale
   
     ![Instância Spot](./images/09.jpg)
-  
-    
   
   - **Host Dedicado**: Hardware dedicado, servidor físico E2C Exclusivo para você, cumprir requisitos de conformidade, visibilidade de soquetes/ núcleos/Ids de hosts, Comprometimento por um período de 3 anos, pode ser comprado sob demanda de horas, se optar por reserva até 70% de desconto em comparação com instâncias por demanda;
   
