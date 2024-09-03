@@ -265,9 +265,9 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
 
   - **On Demand - Sob Demanda**: alto custo se utilizado a longo prazo - aplica-se a projetos de curto prazo, cobrança é realizada conforme o uso, não tem compromisso de uso, não se aplica pagamento adiantado, Pode-se aumentar ou diminuir a capacidade computacional a qualquer momento. 
 
-    > *Aplica-se quando possui cargas de trabalho de curto prazo, validar hipóteses, com pico de utilização imprevisível, testar e experimentar um ambiente*;
-  >
-    > *TAMBÉM TEM A POSSIBILIDADE DE CRIAR UMA INSTÂNCIA SOB DEMANDA RESERVADA PARA MELHORAR O CUSTO, DEFININDO HORAS TRABALHADAS E PERÍODO.*
+ > [!TIP]
+  > *Aplica-se quando possui cargas de trabalho de curto prazo, validar hipóteses, com pico de utilização imprevisível, testar e experimentar um ambiente*;
+  > *TAMBÉM TEM A POSSIBILIDADE DE CRIAR UMA INSTÂNCIA SOB DEMANDA RESERVADA PARA MELHORAR O CUSTO, DEFININDO HORAS TRABALHADAS E PERÍODO.*
   
     
   
@@ -275,7 +275,11 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
 
   - **Instancias reservadas**: Até 75% de desconto em comparação ao modelo por demanda, aplicações que exigem capacidade reservada, comprometimento de uso da instância por um período de 1 ou 3 anos, possui pagamento adiantado;
 
-    > *Aplica-se para ambiente de produção que foi testado e não será modificado, aplicações que precisar ser estado constante, excelente para banco de dados*;
+ > [!TIP]
+  > *Aplica-se para ambiente de produção que foi testado e não será modificado, aplicações que precisar ser estado constante, excelente para banco de dados*;
+  > Podem ser de dois tipos:
+  >  - Standard RI
+  >  - Convertible RI
 
     ![Instâncias Reservadas](./images/08.jpg)
   
@@ -283,8 +287,8 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
   
     **Spot Instances**: até 90% desconto comparado a instâncias sob demanda; São terminadas quando o preço spot, é maior do que o preço que você estabeleceu para pagar; Memorize como leilão de instâncias; terminate = preço spot da AWS>seu preço; não utilize para trabalhos críticos e banco de dados
   
-    > *Aplica-se quando você tem urgência de grande capacidade computacional, workloads que podem parar e serem iniciados novamente, trabalhos em lote, análise de dados, processamento de imagens.*
-    >
+    > [!TIP]
+	> *Aplica-se quando você tem urgência de grande capacidade computacional, workloads que podem parar e serem iniciados novamente, trabalhos em lote, análise de dados, processamento de imagens.*
     > Utilizada para testes e em alguns casos ela é utilizado como Auto Scale
   
     ![Instância Spot](./images/09.jpg)
@@ -293,7 +297,8 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
   
   - **Host Dedicado**: Hardware dedicado, servidor físico E2C Exclusivo para você, cumprir requisitos de conformidade, visibilidade de soquetes/ núcleos/Ids de hosts, Comprometimento por um período de 3 anos, pode ser comprado sob demanda de horas, se optar por reserva até 70% de desconto em comparação com instâncias por demanda;
   
-    > *Aplica-se quando deseja vincular licenças de software, como Windows Server, SQL Server e Suse Linux Enterprise Server. Podemos citar exemplos de casos de aplicação onde os requisitos de conformidade são mais rigorosos(PCI DSS, HIPAA...) garantindo maior segurança e reduzindo riscos de vazamento de dados,  Cargas de trabalho altamente sensíveis- informações confidenciais*. 
+ > [!TIP]
+  > *Aplica-se quando deseja vincular licenças de software, como Windows Server, SQL Server e Suse Linux Enterprise Server. Podemos citar exemplos de casos de aplicação onde os requisitos de conformidade são mais rigorosos(PCI DSS, HIPAA...) garantindo maior segurança e reduzindo riscos de vazamento de dados,  Cargas de trabalho altamente sensíveis- informações confidenciais*. 
   
     - Um host dedicado EC2 é um servidor físico dedicado exclusivamente a uma única conta AWS.
     - Isso significa que você tem controle total sobre o hardware subjacente e não compartilha recursos físicos com outras contas AWS.
@@ -308,7 +313,8 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
   
     * para a instância dedicada, não teremos visibilidade de soquetes, núcleos e ids dos hosts, nem afinidade entre um host e a instância, nem inserção de instância específica nem como adicionar capacidade usando uma solicitação de alocação. 
   
-    > *Aplica-se Quando se tem várias cargas de trabalho em uma única conta e deseja garantir um nível mais alto de isolamento entre essas cargas de trabalho, mas sem isolamento completo; economizar com a contratação de novo host dedicado, afinal se paga pela instância;  quando se utiliza uma carga de trabalho que exige uma grande quantidade de recursos em picos e não o tempo todo.* PODE-SE TER UMA INSTANCIA DEDICADA NO SEU HOST DEDICADO.
+  > [!TIP]
+   > *Aplica-se Quando se tem várias cargas de trabalho em uma única conta e deseja garantir um nível mais alto de isolamento entre essas cargas de trabalho, mas sem isolamento completo; economizar com a contratação de novo host dedicado, afinal se paga pela instância;  quando se utiliza uma carga de trabalho que exige uma grande quantidade de recursos em picos e não o tempo todo.* PODE-SE TER UMA INSTANCIA DEDICADA NO SEU HOST DEDICADO.
   
     - Uma instância dedicada EC2 é uma instância de máquina virtual (VM) que é executada em um host dedicado.
     - Embora a instância compartilhe o host dedicado com outras instâncias, essas instâncias pertencem à mesma conta AWS.
@@ -318,11 +324,11 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
     
     ![Instância Dedicada](./images/11.jpg)
 
+> [!TIP]
 > Possui famílias/ tipo de instancia para melhor atender casos e necessidades, exemplo: 
 > **Família A**,T,M,MAC para uso geral, servidores, homologação e repositórios de códigos. 
 > **Família C** para computacional, modelagem científica, servidores de jogos ou anúncios e marchine learning.
 > instancia **T2.@xLarge** podemos entender que **T** tipo da instancia **T**= família **2** = geração, **xLarge** = tamanho
-
 > Resumo: **banco de dados - instância reservada**; **trazer sua licença on premisse para a AWS - Host dedicado**; **Ambiente de teste por curto período, picos de acesso ou homologação - Sob demanda**; **Computação extra - Instâncias Spot**;
 
 #### Amazon EC2 Auto Scaling
