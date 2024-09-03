@@ -825,7 +825,7 @@ Como podemos ver no fluxo acima o conteúdo não é armazenado em um CloudFront 
 * Nome da URL vai conter o cloudfront.net
 
  > [!TIP]
-	> **Permite aplicar restrição geográfica para bloquear acesso a países que por algum motivo não possa acessar um conteúdo distribuído com Cloudfront.**
+ > **Permite aplicar restrição geográfica para bloquear acesso a países que por algum motivo não possa acessar um conteúdo distribuído com Cloudfront.**
 
 ![CloudFront](./images/37.png)
 
