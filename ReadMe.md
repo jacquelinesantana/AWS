@@ -849,7 +849,67 @@ Serviço para desacoplamento de aplicações redução de interdependência. Pri
 
 ### Amazon Kinesis Data Streams
 
+## Redes
 
+Aprofundando nos conceitos de comunicação entre serviços e máquinas na AWS e com a AWS. 
+
+### ENI
+
+Interfaces de rede elástica (Elastic Network Interface)
+
+Permite conectar uma instância com **subnets dentro da mesma zona de disponibilidade**. Não podemos conectar com outras zonas de disponibilidade ou região.
+
+Esta rede pode vai ter ip privado e caso queira sair para internet um ip público também pode ser adicionado.
+
+Suportado por todas as instâncias
+
+![ENI](./images/17.png)
+
+### ENA
+
+Elastic Network Adapter é uma tecnologia mais atualizada em relação a ENI mas que oferece mesma solução com mais velocidade
+
+Suportado por algumas instâncias
+
+![ENA](./images/18.png)
+
+### EFA
+
+Elastic Fabric Adapter - é do tipo High Speed (altíssima velocidade) apropriada para Machine learning.
+
+Suportado por algumas instâncias (P4d/P4de/DL1 são os tipos de instâncias permitidos)
+
+<u>*Pode comunicar subnets em zonas de disponibilidade diferentes se aplicada em conjunto com o VPC Peering, lembrando que o VPC Peering pode adicionar uma maior latência nessa comunicação.*</u>
+
+*<u>Se aplicada junto a Transit Gateway você pode conectar instâncias em múltiplos VPCs e zonas de disponibilidade com mais escalabilidade e gerencia.</u>*
+
+![EFA](./images/19.png)
+
+### NAT e Internet Gateway
+
+Network Address Translation - é o que vai garantir sua conexão com a internet é um mapeamento estático que pega o seu ip privado quando for sair para a internet receber o ip público. O internet Gateway consegue traduzir esse valor do endereço público para o privado.
+
+![NAT](./images/42.png)
+
+![Internet Gateway](./images/43.png)
+
+### Direct Connetc
+
+
+
+### AWS Global Accelerator
+
+
+
+###  Subnets privadas e públicas
+
+Para as subnets privadas teremos instâncias que não precisam de acesso a internet e automaticamente não ficam acessíveis na internet. Isso pode ser a melhor opção para instâncias que precisam de nível a mais de segurança e não consomem ou não necessitam consumir nada na internet.
+
+Para subnets públicas teremos o ip público e o acesso a internet.
+
+Para toda essa estrutura teremos a tabela de roteamento trazendo o roteamento dos ips privados e públicos.
+
+![Subnets pública x privada e Bastion Host](./images/44.png)
 
 ## AWS Elastic Beanstalk
 
