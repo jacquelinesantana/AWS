@@ -278,8 +278,8 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
  > [!TIP]
   > *Aplica-se para ambiente de produção que foi testado e não será modificado, aplicações que precisar ser estado constante, excelente para banco de dados*;
   > Podem ser de dois tipos:
-  >  - Standard RI
-  >  - Convertible RI
+  >  - Standard RI - permite alterar AZ, Instance size, Networking type ($)
+  >  - Convertible RI - permite alterar AZ, Instance size, Networking type, Family, OS ($$)
 
     ![Instâncias Reservadas](./images/08.jpg)
   
