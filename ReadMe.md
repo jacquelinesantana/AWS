@@ -281,11 +281,11 @@ Serviço que permite criar instâncias computacionais, que podem ser comparadas 
   >  - Standard RI - permite alterar AZ, Instance size, Networking type ($)
   >  - Convertible RI - permite alterar AZ, Instance size, Networking type, Family, OS ($$)
 
-    ![Instâncias Reservadas](./images/08.jpg)
+  ![Instâncias Reservadas](./images/08.jpg)
   
     
   
-    **Spot Instances**: até 90% desconto comparado a instâncias sob demanda; São terminadas quando o preço spot, é maior do que o preço que você estabeleceu para pagar; Memorize como leilão de instâncias; terminate = preço spot da AWS>seu preço; não utilize para trabalhos críticos e banco de dados
+  - **Spot Instances**: até 90% desconto comparado a instâncias sob demanda; São terminadas quando o preço spot, é maior do que o preço que você estabeleceu para pagar; Memorize como leilão de instâncias; terminate = preço spot da AWS>seu preço; não utilize para trabalhos críticos e banco de dados
   
     > [!TIP]
 	> *Aplica-se quando você tem urgência de grande capacidade computacional, workloads que podem parar e serem iniciados novamente, trabalhos em lote, análise de dados, processamento de imagens.*
