@@ -915,7 +915,7 @@ Para toda essa estrutura teremos a tabela de roteamento trazendo o roteamento do
 
 - **Amazon VPC** - serviço que permite criar rede privada virtual na nuvem e até mesmo sub-redes com tabelas de roteamento e regras de firewall. Essa rede é isolada do resto da internet e de outras redes da AWS. (**IaaS**)  | `Aplicação`: para **ter segurança aprimorada**, mantendo isolados e protegidos por acesso restrito alguns recursos - **Integração com ambiente local**, se a empresa já possui estrutura On-premise. - **Ambientes de teste**, para desenvolvedores ou equipe, podendo simular cenários sem afetar a infraestrutura. ** principal produto
 
-Prática:
+##### Prática:
 
 1.  Vá para o serviço VPC
 2. Criar em Criar VPC
@@ -927,6 +927,23 @@ Prática:
 8. Botão criar VPC
 
 ![VPC criada com sucesso](./images/45.png)
+
+##### Escolher zona de disponibilidade para essa VPC
+
+1. Menu Subnets
+2. Botão criar sub-redes(subnets)
+3. Selecionar a VPC
+4. Selecionar a Zona de Disponibilidade
+5. Adicionar para o Bloco CIDR da subnet o valor ip, no caso será 10.0.1.0/24, 10.0.2.0/24 para a segunda, 10.0.3.0/24 e assim sucessivamente as seguintes. Criarei 4 subnets no exercício.
+6. Botão Criar subnet
+
+Resultado esperado:
+
+![Subnets criadas com sucesso](./images/46.png)
+
+##### Tornar subnets como pública
+
+
 
 ## AWS Elastic Beanstalk
 
