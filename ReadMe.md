@@ -973,6 +973,31 @@ Resultado esperado:
 
 OBS: para esse exercício vamos aplicar a tabela de roteamento privada para as outras duas sub-redes em um processo igual ao que fizemos anteriormente.
 
+##### Internet Gateway - acesso a internet
+
+1. Ir para opção Gateways Internet no menu lateral
+2. Criar Gateway da Internet
+3. Dar nome ao seu gateway
+4. Botão Criar gateway da internet
+
+##### Ligar Tabela de roteamento ao Gateway Internet para ter conexão na internet
+
+1. Ainda na tela do Gateway que criamos ir no botão Ações
+2. Opção Associar a VPC
+3. Selecionar o VPC que criamos
+4. Botão Associar Gateway da Internet
+5. Volte na tela de Tabelas de roteamento e selecione a tabela -public que foi criada
+6. Ir na Guia Rotas
+7. Botão Editar rotas
+8. Botão Adicionar rotas
+9. Em IP deixar 0.0.0.0/0
+10. Selecionar o Gateway de internet que criamos
+11. Botão Salvar alterações
+
+ ![Associar a tabela de roteamento com a internet gateway e nossa VPC](C:\Users\tijac\Documents\aws\estudo\images\49.png)
+
+##### Criar uma EC2 na subnet pública e na subnet privada
+
 
 
 ## AWS Elastic Beanstalk
