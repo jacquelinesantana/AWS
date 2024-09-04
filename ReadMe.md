@@ -943,6 +943,36 @@ Resultado esperado:
 
 ##### Tornar subnets como pública
 
+1. Selecionar a subrede
+2. Menu ações - opção editar configurações de subrede
+3. Habilitar endereço IPv4 de atribuição automática
+4. Salvar
+
+##### Tabela de roteamento
+
+1. Ir até a opção tabela de roteamento do menu lateral
+2. Atualizar as tabelas de roteamento e localizar a tabela associada a sua VPC criada(imagem abaixo)
+3. Vamos criar mais uma tabela de roteamento para ter uma apontando as subnets públicas para internet e a outra comunicação apenas interna.
+4. Vamos renomear a tabela de roteamento para internet como -public sendo o prefixo conforme sua preferência. (imagem abaixo)
+5. Clicar no botão Criar tabela de rotas
+6. Adicionar nome a tabela de roteamento
+7. Selecionar a VPC que estamos trabalhando
+8. Botão Criar tabela de rotas
+
+![Tabela de roteamento](./images/47.png)
+
+![Tabela de roteamento](./images/48.png)
+
+##### Adicionar subnets nas tabelas de roteamento
+
+1. No painel das Tabelas de Roteamento clique na tabela de roteamento pública
+2. Ir até a guia Associações de sub-rede
+3. Botão Editar associações de sub-rede
+4. Selecionar as subredes que atribuímos o IPv4 automático
+5. Clicar no botão Salvar associações
+
+OBS: para esse exercício vamos aplicar a tabela de roteamento privada para as outras duas sub-redes em um processo igual ao que fizemos anteriormente.
+
 
 
 ## AWS Elastic Beanstalk
