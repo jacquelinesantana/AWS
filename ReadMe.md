@@ -1034,10 +1034,11 @@ Resultado esperado:
 Antes de realizar o Bastion Host na prática vamos entender oque temos acesso e o que não temos:
 
 > [!WARNING]
-> Ao tentar acessar a máquina privada no power shell do console aws ele não consegue conectar pois não temos um ip público
-> Ao tentar acessar essa máquina pelo ip privado realizando um ping a partir de uma das instâncias públicas vamos ter êxito
-> Ao tentar acessar essa máquina pelo ssh a partir de uma das instâncias públicas vamos ter um retorno que de a autenticação do host não pode estabelecer conexão pois precisamos passar a chave da máquina.
-> A mensagem a seguir é um erro de conexão que vamos trabalhar a seguir.
+>
+> - Ao tentar acessar a máquina privada no power shell do console aws ele não consegue conectar pois não temos um ip público
+> - Ao tentar acessar essa máquina pelo ip privado realizando um ping a partir de uma das instâncias públicas vamos ter êxito
+> - Ao tentar acessar essa máquina pelo ssh a partir de uma das instâncias públicas vamos ter um retorno que de a autenticação do host não pode estabelecer conexão pois precisamos passar a chave da máquina.
+> - A mensagem a seguir é um erro de conexão que vamos trabalhar a seguir.
 
 ![Tentando acessar a instância privada a partir de uma instância pública com SSH](./images/51.PNG)
 
