@@ -1042,7 +1042,19 @@ Antes de realizar o Bastion Host na prática vamos entender oque temos acesso e 
 
 ![Tentando acessar a instância privada a partir de uma instância pública com SSH](./images/51.PNG)
 
+1. Abrir a sua chave da instância privada que vai ser acessada e copiar seu conteúdo completo
+2. Na sua instância pública deve realizar a conexão no power shell do console da AWS
+3. Criar um arquivo com mesmo nome que sua chave já tinha comando: `nano nome da sua chave.pem`
+4. No editor deve-se colar o  código da chave que foi copiada
+5. Pressionar Ctrl + o para sair da digitação do documento e salvar
+6. Pressionar Ctrl + x para sair do arquivo
+7. Ainda na tela do Power Shell dentro da console da AWS vamos realizar alguns comandos, mas para isso volte na sua instância privada, clicar em Conectar, depois vá até Cliente SSH, você deve copiar a linha de comando `chmod 400 "nome da sua chave.pem"`
+8. O código copiado deve ser colado no Power Shell onde estamos conectados com a instância pública
+9. Enter
+10. Copie novamente da instância privada a linha de comando que vai fazer a conexão agora e também execute em sua instância pública `ssh -i "sua chave.pem" ec2-user@seu ip privado`
+11. Confirme com yes
 
+![Conexão realizada na instância privada a partir da instância pública](./images/52.png)
 
 ## AWS Elastic Beanstalk
 
