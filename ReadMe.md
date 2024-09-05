@@ -1025,7 +1025,13 @@ Resultado esperado:
 
 ![Ping de dentro de uma instância para internet](./images/50.png)
 
-Você pode tentar criar as demais instâncias, sendo pelo menos uma para cada subnet.
+> [!TIP]
+> Você pode tentar criar as demais instâncias, sendo pelo menos uma para cada subnet.
+>Após criar as instâncias você também pode testar a conectividade pingando no ip de cada uma das máquinas. 
+
+##### Bastion Host
+
+
 
 ## AWS Elastic Beanstalk
 
