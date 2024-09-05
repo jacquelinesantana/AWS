@@ -998,7 +998,34 @@ OBS: para esse exercício vamos aplicar a tabela de roteamento privada para as o
 
 ##### Criar uma EC2 na subnet pública e na subnet privada
 
+1. Buscar pelo serviço EC2
+2. Executar instâncias
+3. Dar um nome para a instância
+4. Sistema Operacional Linux
+5. Tipo T2.Micro
+6. Chave - criar uma novo ou usar uma que já tiver
+7. Em configuração de rede clicar em Editar
+8. Informar em VPC a VPC que criamos
+9. Selecionar a Subnet conforme criamos também, no caso vou inserir ela em uma subnet pública
+10. Atribuir IP público automaticamente vamos habilitar
+11. Habilitar Grupo de segurança
+12. Nomear o Grupo de segurança
+13. Por ser um ambiente de teste e aprendizado vamos deixar liberado em Regras do Grupo de segurança o tipo como Todo o tráfego
+14. Botão Executar Instância
 
+##### Testar a internet dentro da instância
+
+1. Selecionar a instância
+2. Clicar em Conectar 
+3. Selecionar Conectar-se usando o EC2 Instance Connect
+4. Botão conectar
+5. executar o comando `ping google.com`
+
+Resultado esperado:
+
+![Ping de dentro de uma instância para internet](./images/50.png)
+
+Você pode tentar criar as demais instâncias, sendo pelo menos uma para cada subnet.
 
 ## AWS Elastic Beanstalk
 
