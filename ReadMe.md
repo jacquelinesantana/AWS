@@ -218,6 +218,17 @@ Poderíamos ter um **Condition** também para dar condição da politica, por ex
   - Segurança baseada em identidade: Garanta que apenas usuários autorizados possam realizar determinadas ações.
   - Aplica-se para Buckets e sub-redes
 
+Aplicar uma Regra a lista da VPC:
+
+1. No serviço VPC buscar por Network ACLs
+2. Selecionar a ACL para seu vpc ou criar uma nova ACL
+3. Ao adicionar as regras de entrada/ saída você precisa cuidar sempre das duas pontes - entrada e saída pois as regras não se estendem. Se você configurou regra apenas para a entrada a saída ficará sem regras associadas.
+4. Número da regra é sobre a ordem em que as regras vão ser atendidas
+5. Tipo você define para qual ação vai se aplicar a regras ICMP - ping por exemplo
+6. Origem, é o ip da máquina onde vamos aplicar a regra
+7. Permitir/negar é para definir se estamos liberando essa ação ou limitando.
+8. ![ACL](./images/53.png)
+
 ### Roles(funções)
 
 - São entidades AWS que podem assumir permissões temporárias.
