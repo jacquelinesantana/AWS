@@ -201,6 +201,40 @@ Em **Resource** teremos para quem será aplicado essa politica, no caso do segun
 
 Poderíamos ter um **Condition** também para dar condição da politica, por exemplo definindo para quais S3 vamos seguir essa politica.
 
+### Security Group (Grupo de segurança)
+
+- São como firewalls virtuais que controlam o tráfego de entrada e saída de suas instâncias EC2 e outros serviços da AWS que envolvem recursos de rede como: Elastic Load Balancing, Elastic Container Service, RDS.
+- Posso aplicar a uma instância permitindo o acesso a partir de outra instância a uma porta específica tornando tudo mais seguro, uma vez permitido o acesso ele libera a saída para o mesmo.
+  - Controle granular de tráfego permitindo ou bloqueando acesso específico para portas e protocolos
+  - Segurança por instância: cada instância pode pertencer a um ou mais grupos de segurança
+  - Flexibilidade: configure regras de forma rápida e fácil.
+- Uso de grupos de segurança tornar as regras mais consistentes já que pode-se aplicar mesmo grupo a várias instâncias, RDS, Containers...
+
+### ALC (Access Control List - Lista de controle de acesso) Não indicada para EC2
+
+- São documentos Json que definem as permissões de usuário, grupo ou papel(role) na AWS
+  - Controle de acesso a serviços: define quais serviços da AWS um usuário pode acessar e quais são ações que ele pode realizar.
+  - Gerenciamento de identidade: Associe políticas a usuários, grupos ou roles para controlar o acesso aos recursos.
+  - Segurança baseada em identidade: Garanta que apenas usuários autorizados possam realizar determinadas ações.
+  - Aplica-se para Buckets e sub-redes
+
+### Roles(funções)
+
+- São entidades AWS que podem assumir permissões temporárias.
+  - Delegar privilégios: conceder permissões a serviços ou outros usuários sem compartilhar credenciais
+  - Acesso temporário: Criar roles com permissões específicas para tarefas específicas.
+  - Integração com outros serviços: Utilize roles para permitir que serviços como o EC2 assumam um papel e acessem outros recursos
+
+### Diferenças entre Grupos de segurança e ACL 
+
+- **Grupos de segurança: segurança em rede para EC2 e outros serviços relacionados a redes**
+- **Politicas IAM: controlar ações que usuário podem realizar** 
+- **Roles: Permitir a delegação de privilégios de forma segura**
+
+> [!TIP]
+> O Security Group é StateFull então se vc cria a regra de entrada você não precisa criar as regras de saída.
+> A ACL é StateLess. Nesse caso precisamos criar as regras de entrada e saída.
+
 ### Security Token Service(STS)
 
 Permite que você solicite tokens de sessão do endpoint global que funciona em todas as regiões da AWS. É um serviço global e todas as solicitações de STS vão para um único endpoint em https//sts.amazonaws.com.
@@ -228,7 +262,20 @@ Permite que você solicite tokens de sessão do endpoint global que funciona em 
 
 ### AWS Organizations
 
+Ferramenta para gestão e controle de gastos e usuários com setorização, oferece governança, segurança e automação.
 
+- Governança e conformidade: Políticas centralizadas de segurança e conformidade, reduzindo riscos de desvios e facilitando auditorias
+- Controle de serviços: limite os serviços que podem ser acessados por diferentes contas ou grupos, garantindo que apenas os recursos necessários estejam disponíveis.
+- Gerenciamento de tags: Utilize tags para organizar e classificar seus recursos, facilitando a análise e a aplicação de políticas.
+- Criação automatizada de contas aplicando automaticamente configurações e políticas predefinidas
+- Integração com outros serviços como CloudFormation, para automatizar a implantação de recursos em toda a sua organização
+- Gerenciamento de ciclo de vida de contas garantindo que sua infraestrutura esteja sempre alinhada com as suas necessidades
+- Estrutura hierárquica pra contas
+- Delegação de responsabilidades de adm para diferentes equipes ou departamentos sem comprometer segurança
+- Escalabilidade adaptar sua organização à medida que sua empresa cresce adicionando ou removendo contas
+- Integração com o AWS Config, AWS CloudTrail.
+- Utilizar o IAM para definir as permissões de usuários e grupos dentro da organização
+- Controle de acesso baseado em atributos dos usuário como o departamento ou tags relacionadas
 
 ### Service Control Policy
 
@@ -663,7 +710,7 @@ O proprietário da Bucket consegue por default Listar, Gravar, leitura e gravaç
 > [!TIP]
 > Aplicação: **Hospedagem de websites**, **banco de dados**, **backup e recuperação de desastres**, execução de aplicações que requerem **baixa latência e alta IOPS**(input output operations per second)
 
-## Coleta de processamento de dados - Amazon Kinesis Data Streams
+## Coleta e processamento de dados - Amazon Kinesis Data Streams
 
 Serviço serveless que coleta e processa dados em tempo real. Ideal para aplicações que exigem alta escalabilidade e baixa latência e processamento contínuo de dados.
 
@@ -714,7 +761,9 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
 * Não possui disco é em memória
 * Utiliza In Memory Cache
 * Memory Cache (utiliza objetos para armazenar)
-* Redis(armazena Key Value e aceita multi AZ)
+* Opções de serviço:
+  * **Redis**: banco de dados in memory mais popular oferece alta performance e flexibilidade - para dados quentes e com alta taxa de leitura
+  * **Memcached**: Opção mais simples que o Redis, com menos funcionalidades
 
 > [!TIP]
 >  Aplicação: E-commerce para atender demandas altas como promoções ou feriados. Sistemas em tempo, como jogos online e sistemas de trading financeiro. Sessões de usuário e recomendações para usuários. Consultas complexas ou demoradas ao banco de dados.
@@ -811,7 +860,7 @@ Não é um banco de dados tradicional, é um serviço de cache na memória que d
   * **Latência** - menor tempo de resposta, envia o usuário para o host de menor latência. Aplicações globais onde a experiência do usuário depende de baixa latência. Desvantagens: requer que os recursos estejam distribuídos geograficamente.
   * **Failover** - ativo-passivo verifica se o servidor pode atender se o mais próximo cair ele manda para ao próximo mais perto. Em outras palavras, permite que se defina um recurso primário e um para backup, se o primário falhar ele direciona o tráfego para o recurso de backup. Utilizar para aplicações que requer alta disponibilidade. *Desvantagens: depende da configuração e monitoramento adequado do health check. Se todos os tráfegos falharem, o tráfego será perdido.*
 
-### CloudFront
+### CloudFront(CDN)
 
 É um serviço AWS de rede de fornecimento de conteúdo CDN criado para alta performance. É um serviço global que distribui em proxy de servidores.
 
@@ -847,7 +896,14 @@ Serviço para desacoplamento de aplicações redução de interdependência. Pri
 
 ![SQS serviço de fila de mensagens AWS](./images/34.png)
 
-### Amazon Kinesis Data Streams
+### AWS Elastic Beanstalk(Servless api)
+
+- é um serviço que serve de tudo que é necessário para executar o seu aplicativo com segurança e eficiência na AWS, você só precisa levar o código do seu aplicativo e coloca-ló dentro desse ambiente. (**PaaS**)
+- Quase que um plug and play para aplicativos
+
+### AWS Fargate (Servless - container)
+
+Serviço Server Less para containers permite executar container sem se preocupar com a infraestrutura subjacente, integrado com ECS e EKS ideal para desenvolvedores que querem focar no app containerizado focando só no app e não na estrutura.
 
 ## Redes
 
@@ -893,14 +949,6 @@ Network Address Translation - é o que vai garantir sua conexão com a internet 
 
 ![Internet Gateway](./images/43.png)
 
-### Direct Connetc
-
-
-
-### AWS Global Accelerator
-
-
-
 ###  Subnets privadas e públicas
 
 Para as subnets privadas teremos instâncias que não precisam de acesso a internet e automaticamente não ficam acessíveis na internet. Isso pode ser a melhor opção para instâncias que precisam de nível a mais de segurança e não consomem ou não necessitam consumir nada na internet.
@@ -915,7 +963,7 @@ Para toda essa estrutura teremos a tabela de roteamento trazendo o roteamento do
 
 - **Amazon VPC** - serviço que permite criar rede privada virtual na nuvem e até mesmo sub-redes com tabelas de roteamento e regras de firewall. Essa rede é isolada do resto da internet e de outras redes da AWS. (**IaaS**)  | `Aplicação`: para **ter segurança aprimorada**, mantendo isolados e protegidos por acesso restrito alguns recursos - **Integração com ambiente local**, se a empresa já possui estrutura On-premise. - **Ambientes de teste**, para desenvolvedores ou equipe, podendo simular cenários sem afetar a infraestrutura. ** principal produto
 
-##### Prática:
+#### Prática:
 
 1.  Vá para o serviço VPC
 2. Criar em Criar VPC
@@ -928,7 +976,7 @@ Para toda essa estrutura teremos a tabela de roteamento trazendo o roteamento do
 
 ![VPC criada com sucesso](./images/45.png)
 
-##### Escolher zona de disponibilidade para essa VPC
+#### Escolher zona de disponibilidade para essa VPC
 
 1. Menu Subnets
 2. Botão criar sub-redes(subnets)
@@ -941,14 +989,14 @@ Resultado esperado:
 
 ![Subnets criadas com sucesso](./images/46.png)
 
-##### Tornar subnets como pública
+#### Tornar subnets como pública
 
 1. Selecionar a subrede
 2. Menu ações - opção editar configurações de subrede
 3. Habilitar endereço IPv4 de atribuição automática
 4. Salvar
 
-##### Tabela de roteamento
+#### Tabela de roteamento
 
 1. Ir até a opção tabela de roteamento do menu lateral
 2. Atualizar as tabelas de roteamento e localizar a tabela associada a sua VPC criada(imagem abaixo)
@@ -963,7 +1011,7 @@ Resultado esperado:
 
 ![Tabela de roteamento](./images/48.png)
 
-##### Adicionar subnets nas tabelas de roteamento
+#### Adicionar subnets nas tabelas de roteamento
 
 1. No painel das Tabelas de Roteamento clique na tabela de roteamento pública
 2. Ir até a guia Associações de sub-rede
@@ -973,14 +1021,14 @@ Resultado esperado:
 
 OBS: para esse exercício vamos aplicar a tabela de roteamento privada para as outras duas sub-redes em um processo igual ao que fizemos anteriormente.
 
-##### Internet Gateway - acesso a internet
+#### Internet Gateway - acesso a internet
 
 1. Ir para opção Gateways Internet no menu lateral
 2. Criar Gateway da Internet
 3. Dar nome ao seu gateway
 4. Botão Criar gateway da internet
 
-##### Ligar Tabela de roteamento ao Gateway Internet para ter conexão na internet
+#### Ligar Tabela de roteamento ao Gateway Internet para ter conexão na internet
 
 1. Ainda na tela do Gateway que criamos ir no botão Ações
 2. Opção Associar a VPC
@@ -996,7 +1044,7 @@ OBS: para esse exercício vamos aplicar a tabela de roteamento privada para as o
 
  ![Associar a tabela de roteamento com a internet gateway e nossa VPC](C:\Users\tijac\Documents\aws\estudo\images\49.png)
 
-##### Criar uma EC2 na subnet pública e na subnet privada
+#### Criar uma EC2 na subnet pública e na subnet privada
 
 1. Buscar pelo serviço EC2
 2. Executar instâncias
@@ -1013,7 +1061,7 @@ OBS: para esse exercício vamos aplicar a tabela de roteamento privada para as o
 13. Por ser um ambiente de teste e aprendizado vamos deixar liberado em Regras do Grupo de segurança o tipo como Todo o tráfego
 14. Botão Executar Instância
 
-##### Testar a internet dentro da instância
+#### Testar a internet dentro da instância
 
 1. Selecionar a instância
 2. Clicar em Conectar 
@@ -1029,7 +1077,7 @@ Resultado esperado:
 > Você pode tentar criar as demais instâncias, sendo pelo menos uma para cada subnet.
 >Após criar as instâncias você também pode testar a conectividade pingando no ip de cada uma das máquinas. 
 
-##### Bastion Host
+#### Bastion Host
 
 Antes de realizar o Bastion Host na prática vamos entender oque temos acesso e o que não temos:
 
@@ -1056,9 +1104,87 @@ Antes de realizar o Bastion Host na prática vamos entender oque temos acesso e 
 
 ![Conexão realizada na instância privada a partir da instância pública](./images/52.png)
 
-## AWS Elastic Beanstalk
+> [!TIP]
+> Agora já estamos conectados a máquina privada a partir da instância que estava pública, tudo que a gente realizar vai ter como destino a máquina privada e para voltar a operar na instância pública basta sair com comando `exit`
 
-- é um serviço que serve de tudo que é necessário para executar o seu aplicativo com segurança e eficiência na AWS, você só precisa levar o código do seu aplicativo e coloca-ló dentro desse ambiente. (**PaaS**)
+#### Como rodar atualizações em instâncias privadas?
+
+Para permitir que as máquinas privadas consigam sair para internet e atualizar sem ficar exposta na internet vamos criar um Nat Gateway.
+
+##### Criar um Nat Gateway
+
+1. Menu lateral do VPC opção Nat Gateway
+2. Botão Criar Gateway NAT
+3. De um nome para seu Nat Gateway
+4. Selecionar o subnet da instância privada que vamos aplicar a saída para internet (apenas saída)
+5. Opção de conectividade pode deixar público
+6. Botão Alocar IP Elástico
+7. Botão criar Gateway NAT
+
+Agora vamos definir na Tabela de Roteamento que essa instância privada tem uma rota para sair para internet
+
+Conferir se já temos acesso a internet, a partir da instância public no Power Shell
+
+1. Linha de comando `sudo su`
+2. Passar a instrução de qual a máquina queremos utilizar agora `ssh -i "chave.pem" ec2-user@ip da maquina`
+3. Tentar pingar em um site público qualquer para ver se tem saída para internet
+4. Vamos então entrar no serviço de roteamento, tabela de roteamento
+5. Botão editar na tabela de roteamento privada
+6. Botão Adicionar Rota
+7. Preencher com o ip 0.0.0.0/0
+8. Informar a opção Gateway NAT
+9. Selecionar o Gateway NAT que criamos no passo anterior
+10. Salvar Alterações
+11. Você pode refazer os testes de conectividade para a instância privada e ela deve pingar no site público, reiniciar a instância caso necessário
+
+### Conexões entre VPCs 
+
+Para conectar poucas VPCs entre sí temos uma solução que seria o pareamento entre VPCs **Peering Connect**, mas quando temos muitas VPCs esse tipo de conexão não é tão assertivo devido ao trabalho envolvido. 
+
+Podemos ter então um **Transit Gateway**. (conexão entre VPCs para muitas VPCs)
+
+Para conectar suas VPCs e seu On-Premise podemos ter uma **Full Mesh**.
+
+### VPN ( AWS x On Premises)
+
+![VPN](./images/26.png)
+
+- Aplicação para interligar redes de VPC diferentes como On Premise com AWS
+- Simples de configurar e gerenciar 
+- Ideal para pequenas e médias empresas
+- <u>Desvantagem: pode apresentar latência e limitação de banda especialmente para grandes volumes de dados</u>
+
+### Direct Connetc  ( AWS x On Premises)
+
+- Estabelece conexão dedicada de alta velocidade entre rede local e on Premise. 
+- Baixa latência, maior banda e maior segurança em comparação a VPN
+- <u>Desvantagem: requer investimento inicial</u>
+
+### AWS Site-to-site   ( AWS x On Premises)
+
+-  Pode ser aplicado <u>junto com o Direct Connect combinando as vantagens de ambas as tecnologias</u> e entregar de tráfego crítico
+- Pode ser aplicado <u>com a VPN para tráfego de menor prioridade</u>.
+- <u>Desvantagens: complexidade da configuração.</u>
+
+### AWS Transit Gateway  ( AWS x On Premises)
+
+- Permite conectar múltiplas CPCs e redes on-premises em uma única rede, simplificando a gestão de conectividade
+- Escalabilidade e flexibilidade para grandes redes
+- <u>Desvantagens: Pode ser mais complexo de configurar e gerenciar</u>
+
+### AWS OutPost ( AWS x On Premises)
+
+- Estende os serviços AWS para seu data center, permitindo executar workloads(conjunto de recursos computacionais e aplicações que trabalham juntos) na AWS localmente.
+- Ideal para workloads com requisitos de baixa latência e alta segurança
+- Desvantagens: requer investimento inicial significativo
+
+### AWS Global Accelerator
+
+
+
+
+
+- 
 
 ## Aws Lambda
 
@@ -1411,9 +1537,7 @@ Serviço AWS que monitora sua conta AWS em tempo real buscando acessos anônimos
 
 Serviço da AWS que trabalha monitorando sua instancia em busca de não conformidades de segurança ou melhores práticas. Esta ligado ao princípio de conformidade, auditor de segurança. Identificar vulnerabilidades em instâncias.
 
-## AWS Fargate
 
-Serviço Server Less para containers permite executar container sem se preocupar com a infraestrutura subjacente, integrado com ECS e EKS ideal para desenvolvedores que querem focar no app containerizado focando só no app e não na estrutura.
 
 ## Dicionário AWS
 
