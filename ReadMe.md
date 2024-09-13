@@ -506,6 +506,29 @@ Benefícios:
 
 ![VPC e VPN](./images/26.png)
 
+> [!TIP]
+> #### Escalabilidade Vertical
+>
+> Aumentar a capacidade de sua máquina, atribuindo a esta maior poder de processamento(mais processadores, mais memória Ram, rede e dados.
+>
+> #### Escalabilidade Horizontal 
+>
+> Aumentar a quantidade de máquinas atendendo.
+>
+> #### Balanceamento de carga
+>
+> responsável por realizar a escalabilidade horizontal.
+>
+> #### Balanceamento de rede
+>
+> Qual a porta e endpoint que vai entregar, alvos que vai entregar os dados.
+>
+> #### Balanceamento de aplicação
+>
+> Ele abre o pacote e baseado em um conjunto de regras pré definidas ele vai entregar isso a uma instância ou outra, ou a um S3...
+
+
+
 ## Armazenamentos S3
 
 **Amazon S3** (Amazon Simple Storage Service) - é um serviço de armazenamento de objetos da AWS que permite armazenar e recuperar grandes quantidades de dados de maneira simples e escalável. Oferece local seguro e confiável para armazenar qualquer tipo de arquivo e dados de aplicativos... nessa estrutura os arquivos são chamados objetos e eles estarão organizados em recipientes chamados bucket. | `Aplicação`:  pode ser utilizado como: **Armazenamento de arquivos**, **Acesso e compartilhamento**, **Escalabilidade** pois podemos lidar com qualquer quantidade de dados, **Backup e recuperação**. ** produto principal (**SaaS**)
@@ -973,6 +996,7 @@ Para toda essa estrutura teremos a tabela de roteamento trazendo o roteamento do
 ### Criar uma rede VPC
 
 - **Amazon VPC** - serviço que permite criar rede privada virtual na nuvem e até mesmo sub-redes com tabelas de roteamento e regras de firewall. Essa rede é isolada do resto da internet e de outras redes da AWS. (**IaaS**)  | `Aplicação`: para **ter segurança aprimorada**, mantendo isolados e protegidos por acesso restrito alguns recursos - **Integração com ambiente local**, se a empresa já possui estrutura On-premise. - **Ambientes de teste**, para desenvolvedores ou equipe, podendo simular cenários sem afetar a infraestrutura. ** principal produto
+- <u>OBS: podemos ter até 5 VPCs dentro de uma conta.</u>
 
 #### Prática:
 
@@ -1156,6 +1180,29 @@ Podemos ter então um **Transit Gateway**. (conexão entre VPCs para muitas VPCs
 
 Para conectar suas VPCs e seu On-Premise podemos ter uma **Full Mesh**.
 
+Prática:
+
+1. Criar duas VPCs, podendo ser cada uma em uma Região, para essa parte criei uma VPC em Oregon e uma em Virginia
+2. Estando em uma dessas duas regiões no seu console da AWS, vamos no serviço VPC recurso Peering Connections
+3. Botão Create Peering Connection
+4. Adicionar nome da VPC(opcional)
+5. Em VPC ID escolher a sua VPC local, aquela que você criou para esse exercício
+6. Escolher se a segunda VPC esta dentro da sua conta ou fora, caso esteja fora deve-se informar o ID da conta
+7. Escolher esta VPC esta na mesma região ou outra região, vamos selecionar outra região e informar a região (imagem abaixo)
+8. Botão Create Connection...
+9. Vamos agora para o painel da segunda VPC, aquela que recebe o pedido de conexão, para aceitar a mesma. (imagem abaixo)
+10. Você pode confirmar se é a nossa requisição e aceitar a requisição(imagem)
+11. Vamos validar a comunicação entre as VPCs pingando de uma maquina pública de um VPC em uma máquina pública da segunda VPC 
+![Informando região e VPC id da VPC que foi criada na segunda região](./images/54.png)
+
+![Mensagem de sucesso ao requisitar a conexão](./images/55.png)
+
+![A requisição vista da VPC que recebe o pedido de conexão](./images/56.png)
+
+![Aceitar a requisição de conexão entre VPCs Peering](./images/57.png)
+
+
+
 ### VPN ( AWS x On Premises)
 
 ![VPN](./images/26.png)
@@ -1203,10 +1250,11 @@ Para conectar suas VPCs e seu On-Premise podemos ter uma **Full Mesh**.
 
 ## Redes e entrega de conteúdo
 
-- 
 - **Amazon Route 53** - serviço de DNS fornecido pela AWS que permite conectar nomes de domínio a recursos na internet.  Também oferece outros recursos úteis, como o registro de recursos de  saúde dos servidores, para garantir a alta disponibilidade dos recursos  da web, e o balanceamento de carga, que distribui o tráfego entre vários servidores para melhorar o desempenho. (**SaaS**)
 - **Amazon CloudFront** - Serviço de entrega de conteúdo, acelera a entrega na web de vídeos, imagens e arquivos de página web - através de um cache e aceleração ele consegue entregar o arquivo a partir do ponto de presença mais próximo, ele ajuda a proteger o conteúdo contra ataques DDoS e outros tipos de ameaça.  Faz uso de LOCAIS de BORDA e CACHE para tratar latência. (**SaaS**)
 - **Elastic Load Balancing** - Serviço que ajuda a distribuir o tráfego de rede de forma eficiente entre vários servidores ou instâncias em uma aplicação. Balanceamento de carga a solicitação de acesso a uma url vai passar por ele primeiro, Distribuição de tráfego ele distribui os acessos entre as instâncias ativas para atender o serviço e ajuda a evitar que um único servidor fique sobrecarregado, alta disponibilidade pois esta sempre acompanhando a saúde dos servidores, Elasticidade pois ele vai se adaptando automaticamente as mudanças acionando os servidores adicionais ou pausando esses conforme demanda. (**SaaS**)
+  - Application Load Balancer(ALB) é o Elastic Load Balancer baseado na camada 7 do modelo OSI - aplicação então ele consegue ver o path do endereço e direcionar conforme o mesmo para o destino correto, pode ser também direcionado conforme o subdomínio do site. ROTEAMENTO MAIS DETALHADO
+  - Network Load Balancer(NLB) é baseado na camada 4 do modelo OSI - aplicado ao endereçamento IP, então consegue trabalhar. ROTEAMENTO MAIS RÁPIDO
 
 ### Gerenciamento e Governança
 
