@@ -703,7 +703,19 @@ O proprietário da Bucket consegue por default Listar, Gravar, leitura e gravaç
 
 #### AWS Storage Gateway
 
-É um aplicativo virtual que esta na sua empresa (on premises) que pode ser utilizado para armazenar o cache do S3 localmente.
+Comunicação - dispositivo físico.
+
+![Storage Gateway](./images/58.png)
+
+- <u>Permite que os servidores da empresa consigam acessar um S3 ou outro Storage dentro da AWS.</u>
+- Muito utilizado para backup.
+- Tem sistema de cache
+
+Pode ser aplicado de 3 formar:
+
+1. File Gateway - utiliza o mesmo sistema de armazenamento do S3, é visto como um S3
+2. Volume Gateway - Transporte de volumes
+3. Backup Gateway - Backup de volumes
 
 #### Criar um role para conceder o acesso a uma S3 para um EC2
 
@@ -756,6 +768,12 @@ Casos de uso:
 - Comcast fornece tranmissão cde dados de alta performace com o Kinesis Data Streams
 - Thomson Reuters usa Kenesis para construir uma pipeline de dados de transmissão para proporcionar insights mais rápidos e melhor experiência do usuário
 - Hearst Corporation usa para uma solução centralizada de análise de sequência de cliques usando o Kinesis
+
+Três tipos de serviços:
+
+1. Kinesis Data Streams - coleta os dados para processamento ou entrega em um destino ou outra sessão do Kinesis
+2. Kinesis Data Analitics - análise de dados em SQL ele pode gravar esse dado posteriormente em um banco de dados DynamoDB por exemplo
+3. Kinesis Data Firehose - carrega os dados para um destino final como um bucket S3 - podendo utilizar um Athena para leitura/busca nesse S3 posteriormente
 
 ![Amazon Kinesis Data Streams](./images/35.png)
 
