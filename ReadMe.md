@@ -701,7 +701,17 @@ Este seria o ultimo recurso a ser utilizado para filtrar o trafego (acesso) a um
 
 O proprietário da Bucket consegue por default Listar, Gravar, leitura e gravação.
 
-#### AWS Storage Gateway
+#### Criar um role para conceder o acesso a uma S3 para um EC2
+
+1. Dentro do IAM ir para o recurso Role/Função
+2. Botão criar função
+3. Opção Serviço da AWS, caso de uso EC2
+4. Em politicas de permissão pesquisar por S3 e selecionar a opção: "AmazonS3FullAccess" ou "AmazonS3ReadOnly" dependendo da necessidade
+5. De um nome para sua função e também uma descrição para ajudar a entender quem faz uso e qual o uso
+6. Será gerado um Json com a role criada e suas permissões
+7. Agora basta concluir.
+
+## AWS Storage Gateway
 
 Comunicação - dispositivo físico.
 
@@ -716,16 +726,6 @@ Pode ser aplicado de 3 formar:
 1. File Gateway - utiliza o mesmo sistema de armazenamento do S3, é visto como um S3
 2. Volume Gateway - Transporte de volumes
 3. Backup Gateway - Backup de volumes
-
-#### Criar um role para conceder o acesso a uma S3 para um EC2
-
-1. Dentro do IAM ir para o recurso Role/Função
-2. Botão criar função
-3. Opção Serviço da AWS, caso de uso EC2
-4. Em politicas de permissão pesquisar por S3 e selecionar a opção: "AmazonS3FullAccess" ou "AmazonS3ReadOnly" dependendo da necessidade
-5. De um nome para sua função e também uma descrição para ajudar a entender quem faz uso e qual o uso
-6. Será gerado um Json com a role criada e suas permissões
-7. Agora basta concluir.
 
 ## Armazenamento EBS Multi-atach (Elastic Block Store)
 
@@ -769,11 +769,11 @@ Casos de uso:
 - Thomson Reuters usa Kenesis para construir uma pipeline de dados de transmissão para proporcionar insights mais rápidos e melhor experiência do usuário
 - Hearst Corporation usa para uma solução centralizada de análise de sequência de cliques usando o Kinesis
 
-Três tipos de serviços:
+Três camadas de serviços:
 
-1. Kinesis Data Streams - coleta os dados para processamento ou entrega em um destino ou outra sessão do Kinesis
-2. Kinesis Data Analitics - análise de dados em SQL ele pode gravar esse dado posteriormente em um banco de dados DynamoDB por exemplo
-3. Kinesis Data Firehose - carrega os dados para um destino final como um bucket S3 - podendo utilizar um Athena para leitura/busca nesse S3 posteriormente
+1. **Kinesis Data Streams** - coleta os dados em partes para processamento ou entrega em um destino ou outra sessão do Kinesis(pode reter dados 24 horas) ou **Kinesis Video Streams** que faz o mesmo papel do Data porém coletando vídeos.
+2. **Kinesis Data Analitics** - análise de dados em SQL ele pode gravar esse dado posteriormente em um banco de dados DynamoDB por exemplo, ele faz a analise dos dados do Streams e do Firehose.
+3. **Kinesis Data Firehose** - carrega os dados para um destino final como um bucket S3 - podendo utilizar um Athena para leitura/busca nesse S3 posteriormente(não retem dados)
 
 ![Amazon Kinesis Data Streams](./images/35.png)
 
@@ -956,6 +956,20 @@ Serviço para desacoplamento de aplicações redução de interdependência. Pri
 ### AWS Fargate (Servless - container)
 
 Serviço Server Less para containers permite executar container sem se preocupar com a infraestrutura subjacente, integrado com ECS e EKS ideal para desenvolvedores que querem focar no app containerizado focando só no app e não na estrutura.
+
+### AWS API GATEWAY
+
+Serviço que atua de forma parecida com o Load Balance, porém entregando esse resultado para API - trabalha com o que parte da Lambda, EC2 ou banco de dados.
+
+- Permite criar politicas para origem
+- Permite criar cache
+
+### Cognito
+
+Serviço de autenticação da AWS, pode ser feita a autenticação em um sistema utilizando o facebook ou outra plataforma similar ele tem duas partes:
+
+- **User pool** -> diz se o usuário informou um usuário e senha correto, ou se logou pelo facebook com sucesso
+- **Identity pool** -> diz a que conteúdos o usuário pode acessar após logado.
 
 ## Redes
 
