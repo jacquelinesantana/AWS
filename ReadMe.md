@@ -959,17 +959,7 @@ Serviço Server Less para containers permite executar container sem se preocupar
 
 ### AWS API GATEWAY
 
-Serviço que atua de forma parecida com o Load Balance, porém entregando esse resultado para API - trabalha com o que parte da Lambda, EC2 ou banco de dados.
-
-- Permite criar politicas para origem
-- Permite criar cache
-
-### Cognito
-
-Serviço de autenticação da AWS, pode ser feita a autenticação em um sistema utilizando o facebook ou outra plataforma similar ele tem duas partes:
-
-- **User pool** -> diz se o usuário informou um usuário e senha correto, ou se logou pelo facebook com sucesso
-- **Identity pool** -> diz a que conteúdos o usuário pode acessar após logado.
+-  Criar e gerenciar APIs para suas aplicações backend, permitindo que diferentes clientes (dispositivos móveis, aplicativos web, etc.) se conectem e consumam seus serviços
 
 ## Redes
 
@@ -1270,11 +1260,44 @@ Prática:
 
 ### AWS Global Accelerator
 
+Serviço de rede que ajuda a melhorar a disponibilidade, performance e segurança de aplicações públicas. Ele tem dois ips fixos que sevem de entrada para os endpoints de suas APIS funciona como o Load Balancer só que atendendo APIS.
 
+## Segurança
 
+### AWS Directory Service
 
+É um serviço que permite atribuir funções do IAM aos usuário e grupos do AWS Manage Microsoft Ad ou Simple Ad na nuvem. Se dentro da sua empresa você já tem um Microsoft AD, você pode usar este na AWS.
 
-- 
+### Identity Federation 
+
+- Autenticação de redes sociais para acesso ao IAM
+- É uma forma de utilizar autenticação externa para permitir conectar ao IAM
+
+### Cognito
+
+Serviço de autenticação da AWS, pode ser feita a autenticação em um sistema(desenvolvido pela sua empresa) utilizando o facebook ou outra plataforma similar ele tem duas partes:
+
+- **User pool** -> diz se o usuário informou um usuário e senha correto, ou se logou pelo facebook com sucesso
+- **Identity pool** -> diz a que conteúdos o usuário pode acessar após logado.
+
+### Encryption
+
+Tipos de encryption:
+
+1. **In Transit** - criptografia para dados em trânsito. SSL, HTTPS
+2. **At Rest** - criptografia para dados em repouso, ou que já estão armazenados
+3. **Simétrico** - a chave aplicada para realizar a criptografia é a **mesma chave** que desfaz a criptografia o dado.
+4. **Assimétrico** - a chave aplicada para realizar a criptografia **é diferente da chave** que desfaz a criptografia o dado.
+
+### Key Manager Service (KMS)
+
+Chaves de criptografia que são gerenciadas pela AWS, ele trata essa chave atualizando a mesma quando necessária conforme definido.
+
+É um serviço compartilhado esta disponível para todos os clientes AWS
+
+### Cloud HSM
+
+É um serviço muito parecido com o KMS, sua diferença é que ele é dedicado, esta em um hardware dedicado para sua empresa. AWS não consegue visualizar as chaves.
 
 ## Aws Lambda
 
