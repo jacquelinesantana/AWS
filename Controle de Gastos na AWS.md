@@ -101,3 +101,27 @@ Prática:
 ## Preferencias e configurações
 
 Preferências e configurações permite definir método de pagamento, faturamento, e configurações fiscais.
+
+## Trusted Advisor
+
+Serviço que te indica ações para melhorias nos recursos AWS que estão sendo utilizados, visando maior segurança, uso dos recursos necessários sem disperdiçar dinheiro, atender requisitos de excelencia operacional mas para planos de suporte basico esses recursos são limitados enquando para planos avançados é mais completo.
+
+Suporte completo apenas para os planos Business e Enterprise.
+
+Esse serviço possui os pilares de Otimização de custos, Performance, Tolerância a falhas(que pode te indicar auto scaling e backup), limites de serviço que pode acompanhar o uso dos recursos até chegar em uma metrica de uso(80%) e Excelencia operacional que vai varer seus serviços em busca de melhorias em relação a monitoramento, observabilidade, conformidade que podem ser aplicados ao seus serviços(ativar logs entre outras ações)
+
+## Sobre provisionamento
+
+É um erro bem comum de estimar para muito alto um recurso, exemplo aplicar uma familia ou tamanho de instância que esta muito acima do necessário para atender sua aplicação. 
+
+É indicado utilizar serviços de menor poder computacional que atenda e que pode ser apoiado com Auto Scaling quando necessário do que deixar esse serviço sempre em baixo nível de uso total de recursos para atender os momentos de pico. Isso tras maior economia para o contratante.
+
+## Remover serviços não utilizados
+
+- Verificar os serviços que estão ativos se estão sendo utilizados. 
+- Serviços de EC2, discos, Snapshots que não fazem mais sentido devem ter finalizados para gerar maior economia.
+- Também é necessário avaliar, exemplo: uma instância que não esta em uso custa mais que um Snapshot, então pode-se criar o Snapshot para então deletar a instância se o motivo desta ainda não ter sido deletada é não perder dados. Snapshot custa menos que a instância.
+- Verifique também ip estático se possui algum não utilizado e delete para gerar economia.
+- Load Balancer, também deve ser finalizado quando não utilizado.
+- Crie uma politica para deleção de discos quando não estão em uso, exemplo 30 90 dias sem uso deve ser deletado e ter seu backup feito em Snapshot.
+- Apague Snapshot que não fizer mais sentido.
