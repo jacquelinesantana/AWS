@@ -99,4 +99,55 @@ Tipos de janelas:
 
 ## Projeto
 
-Cenário: Sistema piloto de emissão de alertas climáticos em tempo real, com banco de dados para futuramente ter dashboards interativos e modelos estatísticos.
+Cenário: Sistema piloto de emissão de alertas climáticos em tempo real, com banco de dados para futuramente ter dashboards interativos e modelos estatísticos. Vamos abordar possibilidade de chuva, ventos... e os dados devem ser enviados por e-mail ou SMS.
+
+### Api para consumo dos dados
+
+tomorrow.io
+
+- Oferece dados climáticos que podem ser atualizadas de hora em hora ou  diária com janela de 5 dias.
+- Informações em tempo real Minuto a minuto
+- Dados históricos
+- Oferece até 500 requisições por dia grátis
+- 25 requisições por hora
+- 3 requisições por segundo
+
+#### Para o projeto
+
+- 1 requisição a cada 3 min, 480 chamadas por dia 24x7
+- Criar conta gratuita no app.tomorrow.io
+- Criar chave de API
+
+### Serviços AWS
+
+#### Lambda
+
+Serviço de computação serveless que permite executar umcódigo em resposta de eventos, aceita diversas linguagens, vai fazer papel de consumer
+
+#### IAM Role
+
+Conjunto de permissões que precisamos atribuir as entidades
+
+#### CloudWatch
+
+Monitora recursos, vamos utilizar o seu evento para consultar a api e recuperar as informações climáticas
+
+#### Kinesis
+
+É o nosso sistema broker, plataforma para processar grandes fluxos de dados em tempo real. **Kinesis Data Streams** para coletar e processar dados em tempo real. **Kinesis Data Firehose** para carregar os Streams de dados em destinos como S3 e Redshift e **Kinesis Data Analytics** para análise de Streams de dados em tempo real.
+
+#### S3 
+
+Vai ser utilizado para armazenar os dados na medida e formato que ele chega.
+
+#### Glue
+
+Ferramenta de ETL(extração, transformação e carga) totalmente gerenciado que facilita a preparação e o carregamento de dados para análise. **Glue Crawler** automaticamente varre os dados em suas fontes, detectando o esquema e armazenando definições de tabela. **Glue Data Catolog**, atua como um repositório central de metadados.
+
+#### SNS
+
+Serviço de notificação para ajudar a ver anomalias com os dados.
+
+#### Athena
+
+Permite analisar dados diretamente no S3 usando SQL padrão.
