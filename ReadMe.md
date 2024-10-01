@@ -1299,6 +1299,88 @@ Chaves de criptografia que são gerenciadas pela AWS, ele trata essa chave atual
 
 É um serviço muito parecido com o KMS, sua diferença é que ele é dedicado, esta em um hardware dedicado para sua empresa. AWS não consegue visualizar as chaves.
 
+## IA na AWS
+
+### Amazon Rekognition
+
+Serviço da AWS que consegue varrer imagens e identificar nesta imagem: Pessoas, Texto, Objetos.
+
+É muito utilizado para: Moderação de chats e outros ambientes, identificar placas de carros, identificar faces.
+
+### Amazon Transcribe
+
+IA que converte Fala em texto(utiliza ASR e entende em diversas línguas, possui PII ou seja oculta informações pessoais como CPF, RG...). Pode ser associado a serviços de telefonia e outros transcrevendo o que esta sendo conversado.
+
+O serviço de PII você pode configurar quais dados vc quer que ele ignore, oculte. Exemplo ele vai marcando a transcrição os dados que estiverem habilitados para ser ocultos por tags [numeroCPF] ou [numeroCartãoCredito].
+
+### Amazon Polly
+
+Faz a leitura de um texto, você pode escolher o idioma da leitura, tipo de leitura Neural(mais natural) ou Padrão que é uma fala um pouco mais robótica. Também é possível escolher a voz que faz a leitura e também baixar o áudio em formato mp3.
+
+### Amazon Translate
+
+É utilizado para tradução de websites e outros documentos, podem escolher o idioma origem e o idioma de saída. 
+
+Para texto é possível apenas digitar, também é possível enviar um documento para ser traduzido.
+
+### Amazon Lex
+
+Sistema de linguagem que é o utilizado pela Alexa, utiliza ASR para converter tudo que é solicitado para texto e utiliza NLU para pesquisar na internet a sua resposta, é utilizado para chatbot e call center.
+
+### Amazon Sagemaker
+
+É utilizado por cientistas de dados para criar Machine learn e IA, é possível criar uma nova linguagem ou uma nova IA com este serviço.
+
+1. Rotular os dados
+2. Construir - transformar os dados em blocos de anotações
+3. Treinar - usar algoritmos estruturas para treinamento distribuído
+4. Ajustar - o Sagemaker ajusta automaticamente seu modelo.
+5. Implementar
+6. Descobrir
+
+### Amazon Kendra
+
+Você conectar ao Kendra S3, SharePoint, Salesforce, Onedrive, Google drive, banco de dados... esse serviço vai ler os documentos e banco de dados e vai conseguir extrair essas informações para por exemplo responder em um site perguntas dos usuários.
+
+### Amazon Textract
+
+Você passa uma imagem para ele, e ele consegui ver os textos de uma imagem e extrair esse texto para um arquivo txt.
+
+### Amazon Macie
+
+Serviço da AWS para privacidade e segurança de dados, ele pode examinar um documento atrás de PII.(dados privados como CFP, número de cartão de crédito/ debito)
+
+## Outros serviços AWS
+
+### Amazon AppFlow
+
+Consegue enviar dados de uma plataforma (Slack, Salesforce, Zendesk) para um destino de sua preferencia, exemplo de destinos: S3, Redshift. Google Analytics ou Salesforce. Essa transmissão dos dados da origem para o destino será feito de maneira encriptada podendo gerar filtros dessas mensagens.
+
+### AWS Batch
+
+Processamento em lote, utilizado para ML e análise em lote. Cada Batch job tem a sua definição (diz o que deve ser feito), e tem a fila onde os dados serão executados. Após executar  ele vai armazenar tudo que foi apreendido da análise desses dados em um Storage.
+
+### AWS Amplify
+
+Para criar aplicações Mobile, ele cuida da autenticação do seu app, cria api para falar com outras aplicações, permite conectar seu codigo ao Github, permite conectar com as IAS da AWS, permite monitoramento da app.
+
+### Amazon Cost Anamaly Detection
+
+Verifica qualquer anormalidade da área de custos da sua empresa. Precisa ser feita a configuração dele para poder receber esse apoio. Ele evita surpresas de uma escalada de valores pois ele vai usar IA para verificar e acompanhar seus custos baseado no seu próprio consumo dentro da AWS, qual sua média de custos e quais os serviços que você costuma utilizar.
+
+Formar de monitoramento:
+
+1. serviços
+2. contas de membros da AWS
+3. tags
+4. categorias de serviços
+
+Esse serviço consegue guardar um histórico de anomalias, monitores de serviços por tags...
+
+### AWS System Manager Patch Manager 
+
+É um serviço AWS Patch Manager tem um recurso AWS System Manager para automatizar o processo de aplicação de patches aos nós gerenciados com atualizações relativas a segurança e atualizações.
+
 ## Aws Lambda
 
 - permite executar código sem a necessidade de provisional ou gerenciar servidores, é como um assistente que executa pequenos trechos de código (funções) em resposta a eventos específicos. ( exemplo de eventos: solicitação http, upload de um arquivo no bucket ou alteração em um banco de dados) (**PaaS**)
