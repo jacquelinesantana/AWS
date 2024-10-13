@@ -36,7 +36,7 @@ Faz sentido quando se deseja compartilhar arquivos entre várias instâncias Win
 
 > [!TIP]
 >Questões de prova: Sistemas especializados Windows e Lustre, alta performance.
-> ## EBS (Elastic Block Store)
+## EBS (Elastic Block Store)
 
 É um disco onde é possível manter os dados intactos após parar a instância. Fornece armazenamento em bloco e é anexado na mesma AZ que a instância.
 
