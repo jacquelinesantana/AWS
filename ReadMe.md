@@ -727,6 +727,10 @@ Pode ser aplicado de 3 formar:
 2. Volume Gateway - Transporte de volumes
 3. Backup Gateway - Backup de volumes
 
+## Volume Efêmero
+
+Volume efêmero fornece armazenamento temporário em nível de bloco para a instância EC2, esses discos são ideais para armazenamento temporário de dados alterados com frequência. É o tipo de disco padrão para alguns tipos de EC2.
+
 ## Armazenamento EBS Multi-atach (Elastic Block Store)
 
 É um serviço de armazenamento em bloco da AWS. Ele oferece volumes de armazenamento persistente para instâncias do Amazon EC2, banco de dados(RDS). Armazenamento bruto em nível de bloco.
