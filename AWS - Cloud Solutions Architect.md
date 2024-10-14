@@ -1,4 +1,4 @@
-# Domínio 1 AWS - Cloud Solutions Architect
+# AWS - Cloud Solutions Architect
 
 Armazenamento, desacoplamento, solução de arquitetura multi-nível, Alta disponibilidade e/ou tolerância a falhas.
 
@@ -83,6 +83,10 @@ Distribuir as requisições conforme os hosts saudáveis, serviços que aumente 
 Auxilia a eliminar sobrecarga é um serviço SaaS. Consegue trabalhar até 300 mensagens por segundo as filas FIFO podem processar até 3000 mensagens por segundo.
 
 Pode ser integrado com outros serviços como Redshift, DynamoDB, RDS, EC2, ECS, Lambda, S3, SNS.
+
+Questões de prova: 
+
+Para casos onde o serviço não esteja alinhado com o desejado, exemplo na fila esta sendo entregue uma mesma mensagem mais de uma vez, pode-se aumentar o tempo de visibilidade na fial SQS para um valor maior que o total do tempo limite da função e o tempo limite da janela de lote.
 
 >[!TIP]
 >Questões de prova: comunicação 1:1 confiável para desacoplar aplicações, mensagens em fila para processamento, processamento de mensagens ordenadas
