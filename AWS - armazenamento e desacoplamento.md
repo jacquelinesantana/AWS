@@ -1,4 +1,4 @@
-# AWS - Cloud Solutions Architect
+# AWS - Armazenamento e desacoplamento de API
 
 Armazenamento, desacoplamento, solução de arquitetura multi-nível, Alta disponibilidade e/ou tolerância a falhas.
 
@@ -16,8 +16,15 @@ Acesso aos dados acontece via API, HTTP ou HTTPS.
 
 Tem recursos como: versionamento, cross-regional, criptografia em trânsito TLS e criptografia em repouso(SSE-SE, SSF-KMS, SSE-C)
 
+Questões de prova S3:
+
+- Compartilhar acesso seguro a um bucket a partir da camada de aplicação com uma instância EC2->Criar uma política de bucket que limite o acesso apenas ao tier de aplicação executando na VPC, Configurar um endpoint de gateway VPC para o bucket dentro do VPC
+- Transferência de grandes volumes de dados para o S3 de forma segura para dados sensíveis-> uso do AWS DataSync sobre o AWS Direct Connect
+- Dados criptografados em repouso, melhor solução para as chaves serem rotacionadas -> Amazon KMS (SSE-KMS) com rotação automática.
+- Impedir que arquivos sejam alteradospor um período de tempo até que a empresa decida modificar, apenas usuários específicos na conta podem ter a capacidade de excluir objetos -> Criar um bucket com o S3 Objetc Lock habilitado, habilitar também o vercionamento. Adicionar uma retenção legal aos objetos, adicionar também permissão s3:PutObjectLegalHold às políticas IAM dos usuários que precisam excluir os objetos.
+
 >[!TIP] 
->Questões de prova: Durabilidade de dados, Segurança e ciclo de vida de objetos.
+>Questões de prova S3: Durabilidade de dados, Segurança e ciclo de vida de objetos.
 
 ## Elastic File System (EFS):
 
@@ -27,7 +34,9 @@ Pode ser acoplado aos serviços: EC2, ECS, EKS, Lambda e Fargate.
 
 Faz sentido usar quando se deseja compartilhar arquivos entre várias instâncias Linux.
 
+Questões de prova para o EFS:
 
+- Dados armazenados em sistema de arquivos baseado em NFS, transferir alto volume de dados de forma automatizada -> Instalar um agente AWS DataSync no data center on-premises e Lançar a instância EC2 na mesma zona de disponibilidade que o sistemas de arquivos EFS.
 
 >[!TIP] 
 >Questões de prova: Sistema de arquivos distribuídos e baixa latência.
@@ -37,6 +46,10 @@ Faz sentido usar quando se deseja compartilhar arquivos entre várias instância
 Sistema de arquivos otimizado para Windows e Lustre, ideal para sistemas que precisam de <u>alta performance</u>. Indicado para armazenamento compartilhado.
 
 Faz sentido quando se deseja compartilhar arquivos entre várias instâncias Windows/Lustre.
+
+Questões de prova para FSx:
+
+- On-premises requer armazenamento de arquivos compartilhados do Windows com alta disponibilidade e integrada ao Active Directory -> Criar um sistema de arquivos FSx for Windows File Server na AWS e definir o domínio Active Directory para autenticação.
 
 >[!TIP]
 >Questões de prova: Sistemas especializados Windows e Lustre, alta performance. Sincronizar arquivos no on-premise com AWS. 
@@ -84,9 +97,10 @@ Auxilia a eliminar sobrecarga é um serviço SaaS. Consegue trabalhar até 300 m
 
 Pode ser integrado com outros serviços como Redshift, DynamoDB, RDS, EC2, ECS, Lambda, S3, SNS.
 
-Questões de prova: 
+Questões de prova para o SQS: 
 
-Para casos onde o serviço não esteja alinhado com o desejado, exemplo na fila esta sendo entregue uma mesma mensagem mais de uma vez, pode-se aumentar o tempo de visibilidade na fial SQS para um valor maior que o total do tempo limite da função e o tempo limite da janela de lote.
+- Para casos onde o serviço não esteja alinhado com o desejado, exemplo na fila esta sendo entregue uma mesma mensagem mais de uma vez, pode-se aumentar o tempo de visibilidade na fial SQS para um valor maior que o total do tempo limite da função e o tempo limite da janela de lote.
+- Processar arquivos enviados para o bucket e enviar os dados em formato Json para análise posterior-> Configurar o S3 para enviar uma notificação de evento para uma fila SQS, usar uma função Lambda para ler da fila e processar os dados, armazenar o arquivo Json resultante no DynamoDB.
 
 >[!TIP]
 >Questões de prova: comunicação 1:1 confiável para desacoplar aplicações, mensagens em fila para processamento, processamento de mensagens ordenadas
@@ -104,11 +118,23 @@ Esse serviço pode entregar mensagens para vários assinantes ao mesmo tempo.
 >
 > <u>Serviço que pode entregar mensagens para vários assinantes por vez.</u>
 
+Amazon MQ
+
+Serviço de fila voltado a sistemas legados feitos em RabbitMQ ou outros no on-premises.
+
+Questões de prova para o Amazon MQ:
+
+- Use o Amazon MQ com brokers ativos/standby configurados em duas zonas de disponibilidade. Adicione um grupo de AutoScaling para as instâncias consumidoras de EC2 em duas zonas de disponibilidade.
+
 ### Lambda
 
 Executa código sem se preocupar com servidores ou clusters, 1Milhão de solicitações gratuitas por mês no nível gratuito. Funciona com algum gatilho para iniciar que pode ser um link, formulário e até mesmo outro serviço da AWS. 
 
 Pode ser utilizado com conjunto com outros serviços como o API Gateway, S3, DynamoDB, Step Functions.
+
+Questões de prova para Lambda:
+
+- Acompanhar dados a partir de uma api Rest -> Usar Amazon API Gateway com AWS Lambda.
 
 > [!TIP]
 > Questões de prova: desacoplar parte do código sem se preocupar com a estrutura computacional por trás disso. 
