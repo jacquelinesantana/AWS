@@ -112,7 +112,7 @@ nada apenas utilizar o serviço
 | **Modelo PaaS**                    | Escolha de recursos de hardware/recursos<br />Escolha de estrutura de segurança<br />Segurança online<br />Escolha de melhor solução<br /><br />Configuração de backup e redundância<br /><br />Atualizações dos programas implementados<br />Replicar serviços em mais de uma região sem custo de hardware, prédio... | Infraestrutura<br />Rede<br />Computadores/Servidores (escolha e implementação)<br />Segurança física<br />Manutenção e implementação de Sistema Operacional <br /><br />Licença do Sistema operacional (caso optar) |
 | **Modelo SaaS**                    | Escolha de melhor solução<br /><br />Seu código e segurança de acesso ao painel AWS | Infraestrutura<br />Rede<br />Computadores/Servidores (escolha e implementação)<br />Segurança física<br />Manutenção e implementação de Sistema Operacional <br />Manutenção e implementação da solução operando para ser apenas utilizada<br />Licença dos programas (caso optar)<br />Backup automático<br />Redundância automática |
 
-![Responsabilidade compartilhada](./images/03.JPG)
+![Responsabilidade compartilhada](./images/responsabilidade compartilhada aws.gif)
 
 ## IAM - Identity And Access Management
 
