@@ -21,7 +21,7 @@ Questões de prova S3:
 - Compartilhar acesso seguro a um bucket a partir da camada de aplicação com uma instância EC2->Criar uma política de bucket que limite o acesso apenas ao tier de aplicação executando na VPC, Configurar um endpoint de gateway VPC para o bucket dentro do VPC
 - Transferência de grandes volumes de dados para o S3 de forma segura para dados sensíveis-> uso do AWS DataSync sobre o AWS Direct Connect
 - Dados criptografados em repouso, melhor solução para as chaves serem rotacionadas -> Amazon KMS (SSE-KMS) com rotação automática.
-- Impedir que arquivos sejam alteradospor um período de tempo até que a empresa decida modificar, apenas usuários específicos na conta podem ter a capacidade de excluir objetos -> Criar um bucket com o S3 Objetc Lock habilitado, habilitar também o vercionamento. Adicionar uma retenção legal aos objetos, adicionar também permissão s3:PutObjectLegalHold às políticas IAM dos usuários que precisam excluir os objetos.
+- Impedir que arquivos sejam alterados por um período de tempo até que a empresa decida modificar, apenas usuários específicos na conta podem ter a capacidade de excluir objetos -> Criar um bucket com o S3 Objetc Lock habilitado, habilitar também o versionamento. Adicionar uma retenção legal aos objetos, adicionar também permissão s3:PutObjectLegalHold às políticas IAM dos usuários que precisam excluir os objetos.
 
 >[!TIP] 
 >Questões de prova S3: Durabilidade de dados, Segurança e ciclo de vida de objetos.
@@ -99,7 +99,7 @@ Pode ser integrado com outros serviços como Redshift, DynamoDB, RDS, EC2, ECS, 
 
 Questões de prova para o SQS: 
 
-- Para casos onde o serviço não esteja alinhado com o desejado, exemplo na fila esta sendo entregue uma mesma mensagem mais de uma vez, pode-se aumentar o tempo de visibilidade na fial SQS para um valor maior que o total do tempo limite da função e o tempo limite da janela de lote.
+- Para casos onde o serviço não esteja alinhado com o desejado, exemplo na fila esta sendo entregue uma mesma mensagem mais de uma vez, pode-se aumentar o tempo de visibilidade na fila SQS para um valor maior que o total do tempo limite da função e o tempo limite da janela de lote.
 - Processar arquivos enviados para o bucket e enviar os dados em formato Json para análise posterior-> Configurar o S3 para enviar uma notificação de evento para uma fila SQS, usar uma função Lambda para ler da fila e processar os dados, armazenar o arquivo Json resultante no DynamoDB.
 
 >[!TIP]
@@ -118,7 +118,7 @@ Esse serviço pode entregar mensagens para vários assinantes ao mesmo tempo.
 >
 > <u>Serviço que pode entregar mensagens para vários assinantes por vez.</u>
 
-Amazon MQ
+### Amazon MQ
 
 Serviço de fila voltado a sistemas legados feitos em RabbitMQ ou outros no on-premises.
 

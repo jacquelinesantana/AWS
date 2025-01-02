@@ -1,4 +1,4 @@
-Questões de prova - SAA-03
+# Questões de prova - SAA-03
 
 Limitar acesso a serviços ou ações específicas em todas as contas AWS da equipe, as contas estão no AWS Organizations. A solução deve ser escalável e deve haver um único ponto onde as permissões possam ser mantidas.
 
@@ -226,35 +226,35 @@ Aplicativo Python que processa dados em Json e gera resultados em banco de dados
 
 EC2 em sub-redes privadas, precisa acessar o DynamoDB, qual a forma mais segura?
 
-R: 
+<u>R: Use endpoint VPC para o DynamoDB.</u>
 
-instancias EC2 e uma instância do RDS em uma única AZ. Fazer backup em uma região separada sem sobrecarga operacional.
+Instancias EC2 e uma instância do RDS em uma única AZ. Fazer backup em uma região separada sem sobrecarga operacional.
 
-R: 
+<u>R: User o AWS Backup para copiar backups do EC2 e backups do RDS para a região destino.</u>
 
 Infraestrutura de computação de alto desempenho na AWS para modelagem de risco financeiro. As cargas de trabalho da empresa rodam em Linux. Cada instância de trabalho é uma Spot (rodam centenas), tem curta duração e gera milhares de arquivos de saída que são armazenados em armazenamento persistente para análise e uso futuro a longo prazo. Copiar dados on-premises para nuvem de forma a ser persistente de longo prazo para tornar os dados disponíveis para processamento para as instâncias. 
 
-R:
+<u>R: Amazon FSx for Lustre integrado com S3.</u>
 
 Armazenar usuário e senha de um bando de dados que um aplicativo usa para acessar uma instância RDS a partir de outra instância. Deve-se criar um parâmetro seguro no AWS System Manager Parameter Store. 
 
-R:
+<u>R: Criar uma função IAM que tenha acesso de leitura ao parâmetro do Parameter Store. Permita acesso de decriptação a uma chave AWS KMS que é usada para criptografia do parâmetro. Atribuir essa função IAM a instancia EC2.</u> 
 
-  Aplicativo Web deve ser executado em EC2 com ALB e recentemente a sua política foi alterado e exige que o app seja acessado apenas de um pais específico.
+Aplicativo Web deve ser executado em EC2 com ALB e recentemente a sua política foi alterado e exige que o app seja acessado apenas de um pais específico.
 
-R: 
+<u>R: Configurar o AWS WAF no ALB em uma VPC</u>
 
 Migrar do on-premises para AWS e pode usar apenas uma região e AZ, e sem acesso a internet.
 
-R:
+<u>R: Usar o AWS Organizations para configurar políticas de controle de serviço(SCPS) que impedem VPCs de obter acesso à internet. Negar acesso a todas as regiões AWS exceto a permitida.</u>
 
-R:
+<u>R: Usar AWS Control Tower para implementar guardrails de residência de dados para negar acesso à internet e negar acesso a todas as regiões AWS, exceto a permitida.</u>
 
 Containers na AWS, aplicações que podem toletar interrupções. 
 
-R:
+<u>R: Usar Spot em um grupo de nós gerenciados do EKS.</u>
 
 Implementar App do on-premises para a AWS o mesmo esta em container e deve atender alta demanda logo após ser implementado. Deve-se ter escala ser altamente disponível e minimizar a sobrecarga operacional.
 
-R:
+<u>R: Armazenar imagens de contêiner em um repositório Amazon Elastic Container Registry(ECR). Usar um cluster Amazon Elastic Container Service com o tipo de lançamento AWS Fargate para executar os contêineres. Usar o rastreamento de alvo para escalar automaticamente com base na demanda.</u>
 
