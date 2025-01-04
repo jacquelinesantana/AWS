@@ -152,3 +152,27 @@ ping google.com
 3. Configure backup e recuperação de desastres
 4. Implemente monitoramento e alertas
 5. Documente todos os processos e procedimentos
+
+# Prática
+## Criar a instância com acesso a internet
+1. Criar a VPC
+2. Criar um Internet Gateway e atachar com a VCP que vc criou
+3. Criar uma tabela de roteamento com saída para o internet Gateway e uma local
+![resultado esperado sua rota com as indicações de saída para a subnet](https://github.com/user-attachments/assets/6181bdb5-7f33-4977-a2c0-80eb041fa15f)
+5. Criar a subrede pública com as seguintes configurações:
+     1. vincular a rota criado a esta subrede
+     2. definir o numero máximo de máquinas que podem se conectar a esta subrede com o CIDR IPV4 pode ser um /20 ou /24
+     3. ative o auto-assign public IPv4 address
+![resultado esperado confira se o vcp e tabela de roteamento são as que você criou](https://github.com/user-attachments/assets/73d6bf76-b156-4d4c-9bbf-20b0be5eb43d)
+6. Criar um grupo de segurança com as seguintes configurações:
+     1. adicione um acesso para seu ip para porta 22 acesso SSH
+![Inbound exemplo](https://github.com/user-attachments/assets/bb54a651-f7bb-4607-bf2f-e0de1f1383c9)
+![outbound exemplo](https://github.com/user-attachments/assets/6dddd5f1-9ad2-461c-9991-4b1de0202625)
+7. Criar uma instância com as seguintes configurações:
+     1. edite as configurações de VPC e informe a sua VPC
+     2. informe a subnet publica que foi criada
+     3. informe o grupo de segurança criado anteriormente com acesso via SSH seu ip liberado
+![Resultado esperado, confirme se os pontos marcados estão com as informações da sua VPC, sua subrede...](https://github.com/user-attachments/assets/7dea0ad0-4e14-4ee9-b91e-6524505c4098)
+Podemos fazer um teste acessando essa instância e tentando realizar ping em algum site.
+## criar a instância com acesso privado
+1. 
