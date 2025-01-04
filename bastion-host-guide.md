@@ -175,4 +175,10 @@ ping google.com
 ![Resultado esperado, confirme se os pontos marcados estão com as informações da sua VPC, sua subrede...](https://github.com/user-attachments/assets/7dea0ad0-4e14-4ee9-b91e-6524505c4098)
 Podemos fazer um teste acessando essa instância e tentando realizar ping em algum site.
 ## criar a instância com acesso privado
-1. 
+1. Criar uma tabela de roteamento sem acesso a Internet Gateway
+![resultado esperado: Tabela de roteamento](https://github.com/user-attachments/assets/663b79df-3441-4754-b5fc-c6246e1e409d)
+2. criar a subnet e relacionar ela a sua tabela de relacionamento sem internet Gateway
+![resultado esperado: confirme se o subnet esta configurada com sua VPC e sua tabela de roteamento](https://github.com/user-attachments/assets/6f868760-a489-4a6a-a46a-a8d963748fa8)
+3.  Criar um grupo de segurança que de acesso ao bastion host da seguinte forma:
+      1. 
+5. 
