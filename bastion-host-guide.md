@@ -179,6 +179,52 @@ Podemos fazer um teste acessando essa instância e tentando realizar ping em alg
 ![resultado esperado: Tabela de roteamento](https://github.com/user-attachments/assets/663b79df-3441-4754-b5fc-c6246e1e409d)
 2. criar a subnet e relacionar ela a sua tabela de relacionamento sem internet Gateway
 ![resultado esperado: confirme se o subnet esta configurada com sua VPC e sua tabela de roteamento](https://github.com/user-attachments/assets/6f868760-a489-4a6a-a46a-a8d963748fa8)
-3.  Criar um grupo de segurança que de acesso ao bastion host da seguinte forma:
-      1. 
-5. 
+3. Criar um grupo de segurança que de acesso ao bastion host da seguinte forma:
+      1. indicar como inbound o acesso a SSH custom acesso ao grupo de segurança que você criou para o bastion host
+      2. não precisa alterar o outbound
+  ![resultado esperado: acesso inboud liberado apenas para o ssh do grupo de segurança do Bastion Host](https://github.com/user-attachments/assets/da86aacf-f263-4046-b584-87dcf9e2494b)
+5. Criar a instância privada com as seguintes configurações:
+     1. usar preferencialmente uma key pair diferente da usada no bastion host
+OBS: Caso queira testar essa instancia se esta acessivel pelo bastion host, você pode adicionar uma inbound rules no grupo de segurança criado para a instância privada, adicione All ICMP - IPv4 para o grupo de segurança do bastion host
+![resultado esperado: confira se a instância não tem ip público, esta na VPC e subnet correta](https://github.com/user-attachments/assets/feb38567-8d29-4e11-863c-98ef2bc23bcc)
+![resultado esperado: adicionado a regra para permitir o ping no grupo de segurança da instância privada](https://github.com/user-attachments/assets/61dca493-662f-4762-9501-09fb8160d787)
+![resultado esperado: ping da máquina pública para a privada](https://github.com/user-attachments/assets/b318cddf-ac5f-48a1-8341-40715967c2c7)
+# Acesso da máquina pública para a máquina privada
+Temos aqui dois caminhos que podem ser utilizados, sendo o primeiro não muito indicado e o segundo o que vamos colocar como o mais adequado.
+1. subir o arquivo da chave pem para dentro da máquina pública e conseguir acessar a instância privada através do SSH de maneira muito simples.
+2. realizar uma tecnica chamada: Agent Forwarding ou SSH Agent Forwarding. Que vai permitir acessar a instância privada a partir da instância pública sem expor a chave pem dentro de uma máquina pública.
+## Acesso a máquina privada por meio de Agent Forwarding
+É uma técnica que permite que você use a chave privada armazenada no seu computador local para autenticar em uma instância privada (na subnet privada), passando pelo bastion host, sem a necessidade de transferir ou copiar a chave privada para o bastion host.
+No final do material vamos ter algumas dicas para o uso dessa tecnica.
+1. Abra o PowerShell como administrador
+2. Execute o comando: `ssh-add .\chave1.pem`
+3. Para verificar se a chave foi adicionada execute o comando: `ssh-add -l` (a letra após o - é L em caixa baixa)
+4. Agora, acesse a máquina pública com o seguinte comando `ssh -A -i "NOMECHAVE.pem" ec2-user@IPDAMAQUINAPUBLICA` esse -A no comando vai permitir acessar a máquina "levando" a chave que copiamos no Agent Forwarding
+5. dentro da máquina pública vamos executar o seguinte comando para acessar a máquina privada: `ssh ec2-user@IPMAQUINAPRIVADA` note que foi removido o -i e a chave
+![resultado esperado: note que acessamos a máquina pública e ele mostra o ip dessa maquina e rodamos o ssh para acessar a máquina privada](https://github.com/user-attachments/assets/e2264a10-87ca-4be0-9db8-d6a5332f5fed)
+Nesse momento todo comando executado será executado dentro da máquina privada.
+## Acesso a internet dentro da máquina privada através da maquina bastion host
+Nesse momento você pode testar dar um simples comando de ping para validar que esta sem acesso a internet
+
+
+# Agent Forwarding dicas
+1. para saber se o OpenSSh esta instalado na sua máquina execute o comando:
+```
+Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
+```
+2. instalar o OpenSSh caso não esteja instalado:
+```
+dism /Online /Add-Capability /CapabilityName:OpenSSH.Client~~~~0.0.1.0
+```
+3. verificar se o OpenSSH esta executando na sua máquina:
+```
+Get-Service ssh-agent
+```
+4. iniciar o serviço OpenSSH:
+```
+Start-Service ssh-agent
+```
+
+   
+
+
