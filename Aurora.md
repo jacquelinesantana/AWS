@@ -59,6 +59,8 @@
    - Nome do usuário: `admin`.
    - Senha: `password123`.
    - Finalize clicando em "Create database".
+   - Ajuste seu banco de dados para aceitar conexão externa em: Connectivity & security -> Publicly accessible
+
 
 ------
 
