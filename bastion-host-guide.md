@@ -24,13 +24,13 @@ O Bastion Host (também conhecido como Jump Server) é um servidor especial que 
 ### 2. Criação das Subnets
 1. Crie a subnet pública:
    - Nome: Public-Subnet
-   - CIDR: 10.0.1.0/24
+   - CIDR: 10.0.16.0/24
    - AZ: us-east-1a
    - Auto-assign public IP: Yes
 
 2. Crie a subnet privada:
    - Nome: Private-Subnet
-   - CIDR: 10.0.2.0/24
+   - CIDR: 10.0.32.0/24
    - AZ: us-east-1a
    - Auto-assign public IP: No
 
@@ -205,6 +205,15 @@ No final do material vamos ter algumas dicas para o uso dessa tecnica.
 Nesse momento todo comando executado será executado dentro da máquina privada.
 ## Acesso a internet dentro da máquina privada através da maquina bastion host
 Nesse momento você pode testar dar um simples comando de ping para validar que esta sem acesso a internet
+Para isso vamos impleentar o NAT Gateway.
+O NAT Gateway é necessário para que instâncias privadas possam acessar recursos na internet. Quando você utiliza um bastion host, ele atua como um intermediário para acessar as instâncias privadas, sem a necessidade de acesso direto à internet.
+1. Crie um Nat Gateway passando um ip público para ele, aponte na Nat gateway a subnet publica para que essa consiga ver a intenet
+![resultado esperado: ter a nat gateway criada com as informações da subnet publica associada a ela para que consiga sair para internet](https://github.com/user-attachments/assets/33d3b0fa-b05d-40e0-8292-276977cadd95)
+2. Associe a tabela de roteamento da subnet privada com o nat que você criou
+![resultado esperado: tabela de roteamento com as rotas associadas](https://github.com/user-attachments/assets/fb0552c5-96c9-4fc5-a64a-afd19516291b)
+3. Confirmar se a tabela de roteamento esta associada a sua subnet privada, caso não ajustar.
+OBS: faça o teste com ping para um site público a partir da maquina privada acessada através do bastion host, tenta tbm algum comando como: ` sudo yum update` e se tudo ocorreu conforme o esperado você vai obter sucesso para essas duas ações.
+![resultado esperado: sucesso no ping e também na atualização](https://github.com/user-attachments/assets/59cc4288-3303-4e86-9dc4-5b5a66788e45)
 
 
 # Agent Forwarding dicas
