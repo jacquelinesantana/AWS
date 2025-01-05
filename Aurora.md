@@ -89,6 +89,127 @@ SELECT * FROM students;
 ```
 
 ------
+## Comparando o RDS for Mysql com o Aurora for Mysql
+1. Arquitetura e Armazenamento:
+
+- RDS for MySQL:
+
+Usa arquitetura tradicional MySQL;
+Armazenamento EBS padrão;
+Limite de 16TB por instância;
+Backup e réplicas mais lentos por serem baseados em snapshots;
+
+- Aurora MySQL:
+
+Arquitetura distribuída proprietária da AWS;
+Armazenamento distribuído em 6 cópias em 3 zonas de disponibilidade;
+Limite de 128TB por cluster;
+Backup e réplicas mais rápidos por serem contínuos e distribuídos;
+
+
+2. Performance:
+
+- RDS MySQL:
+
+Performance similar ao MySQL on-premises;
+Latência de escrita/leitura padrão MySQL;
+Bom para cargas de trabalho até 2000-3000 transações por segundo;
+
+- Aurora MySQL:
+
+Até 5x mais performance que MySQL padrão;
+Latência muito menor em escritas/leituras;
+Pode lidar com 100.000+ transações por segundo;
+Auto-scaling de leituras com até 15 réplicas;
+
+
+3. Custos:
+
+- RDS MySQL:
+
+Cobra por hora da instância + armazenamento EBS;
+Mais econômico para bancos pequenos/médios;
+Bom custo-benefício até 1TB de dados;
+Preço previsível e linear;
+
+- Aurora MySQL:
+
+Cobra por hora do cluster + IO + armazenamento;
+Mais caro para bancos pequenos;
+Melhor custo-benefício para grandes volumes;
+Preço pode variar conforme uso;
+
+
+4. Casos de Uso Ideais:
+
+- RDS MySQL:
+
+Aplicações pequenas e médias;
+Startups e MVPs;
+Cargas previsíveis;
+Até 2000-3000 transações/segundo;
+Dados até 1-2TB;
+Orçamento limitado;
+Quando não precisa de alta disponibilidade complexa;
+
+- Aurora MySQL:
+
+Aplicações enterprise;
+E-commerces de alto tráfego;
+Sistemas que precisam de escalabilidade rápida;
+Mais de 3000 transações/segundo;
+Dados acima de 2TB;
+Necessidade de alta disponibilidade;
+Sistemas críticos que não podem ter downtime;
+
+
+I. Quando Justifica Usar Aurora:
+
+- Número de Acessos:
+
+A partir de 3000-5000 transações por segundo;
+Mais de 10.000 queries por minuto;
+Picos de acesso frequentes e imprevisíveis;
+Aurora pode escalar até 200.000 queries por segundo;
+
+- Outros Critérios:
+
+Necessidade de disponibilidade 99.99%;
+Replicação global;
+Recovery time objective (RTO) muito baixo;
+Backups sem impacto na performance;
+Necessidade de scaling automático;
+Budget não é a principal preocupação;
+
+
+- Considerações para Escolha:
+
+a. Escolha RDS MySQL se:
+
+Está começando um projeto;
+Tem orçamento limitado;
+Carga de trabalho é previsível;
+Não precisa de recursos avançados de HA;
+Dados são menores que 1TB;
+Até 2000 transações/segundo;
+
+b. Escolha Aurora MySQL se:
+
+Precisa de alta performance;
+Tem orçamento mais flexível;
+Carga de trabalho é variável;
+Precisa de alta disponibilidade;
+Dados maiores que 2TB;
+Mais de 3000 transações/segundo;
+
+- Aurora se paga quando:
+
+O custo de downtime é alto;
+Precisa de recuperação rápida;
+Tem equipe capacitada para gerenciar;
+Volume de dados justifica o investimento;
+Necessita de replicação global;
+Performance é crítica para o negócio;
 
 ## **Conclusão **
 
