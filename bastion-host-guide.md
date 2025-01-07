@@ -1,4 +1,5 @@
 # Guia de Implementação de Bastion Host na AWS
+https://excalidraw.com/#json=Grdrw3GsadTkjlqvZHPkP,e4oFECNVh1spdjciKyrIvQ
 
 ## Introdução
 O Bastion Host (também conhecido como Jump Server) é um servidor especial que serve como ponto de entrada para acessar instâncias em uma rede privada de forma segura. Ele atua como uma ponte entre a internet pública e seus recursos privados.
